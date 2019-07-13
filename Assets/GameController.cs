@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     float timeToStart = 1f;
     float timeSinceStart = 0f;
+    int maxGameTime = 60;
     public CameraController CameraController;
     public CharacterController2D CharacterController;
     TimeController characterTimeController;
@@ -31,7 +32,6 @@ public class GameController : MonoBehaviour
         {
             StartPlaying();
         }
-
         if (isPlaying)
         {
             if (isRewinding)
@@ -43,9 +43,11 @@ public class GameController : MonoBehaviour
                 timePlaying += Time.deltaTime;
             }
 
+            //Total time elapsed since game start
             currentTimePoint = timePlaying - timeRewinding;
 
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5) || Input.GetKey(KeyCode.JoystickButton2))
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5) || Input.GetKey(KeyCode.JoystickButton2))
+                && timeRewinding <= timePlaying)
             {
                 isRewinding = true;
                 CameraController.isRewinding = true;
@@ -57,16 +59,21 @@ public class GameController : MonoBehaviour
                 CameraController.isRewinding = false;
                 characterTimeController.isRewinding = false;
             }
-            TimeLeft.text = secondsLeft().ToString();
+
+            TimeLeft.text = GetSecondsLeftAsString();
         }
     }
 
-    int maxTime = 60;
-    int secondsLeft()
+    int GetSecondsLeft()
     {
-        
-        return maxTime - (int)currentTimePoint;
+        return maxGameTime - (int)currentTimePoint;
     }
+    string GetSecondsLeftAsString()
+    {
+        return (maxGameTime - (int)currentTimePoint).ToString();
+    }
+
+
 
     void StartPlaying()
     {
