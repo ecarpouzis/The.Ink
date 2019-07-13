@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
 
     private BoxCollider2D boxCollider;
 
-    private Vector2 velocity;
+    public Vector2 velocity;
 
     /// <summary>
     /// Set to true when the character intersects a collider beneath
