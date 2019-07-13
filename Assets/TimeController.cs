@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Keyframe
+public class PositionKeyframe
 {
     public Vector2 position;
     public Vector2 velocity;
 
-    public Keyframe(Vector2 position, Vector2 velocity)
+    public PositionKeyframe(Vector2 position, Vector2 velocity)
     {
         this.position = position;
         this.velocity = velocity;
@@ -49,7 +49,7 @@ public class TimeController : MonoBehaviour
             else
             {
                 frameCounter = 0;
-                keyframes.Add(new Keyframe(player.transform.position, player.GetComponent<CharacterController2D>().velocity));
+                keyframes.Add(new PositionKeyframe(player.transform.position, player.GetComponent<CharacterController2D>().velocity));
             }
         }
         else
@@ -88,11 +88,11 @@ public class TimeController : MonoBehaviour
 
         if (secondToLastIndex >= 0)
         {
-            currentPosition = (keyframes[lastIndex] as Keyframe).position;
-            previousPosition = (keyframes[secondToLastIndex] as Keyframe).position;
+            currentPosition = (keyframes[lastIndex] as PositionKeyframe).position;
+            previousPosition = (keyframes[secondToLastIndex] as PositionKeyframe).position;
 
-            currentVelocity = (keyframes[lastIndex] as Keyframe).velocity;
-            previousVelocity = (keyframes[secondToLastIndex] as Keyframe).velocity;
+            currentVelocity = (keyframes[lastIndex] as PositionKeyframe).velocity;
+            previousVelocity = (keyframes[secondToLastIndex] as PositionKeyframe).velocity;
 
             keyframes.RemoveAt(lastIndex);
         }
