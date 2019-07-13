@@ -39,7 +39,7 @@ public class CharacterController2D : MonoBehaviour
         if (isRunning)
         {
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            float moveInput = Input.GetAxisRaw("Horizontal");
+            float moveInput = Input.GetAxis("Horizontal");
 
             if (grounded)
             {
