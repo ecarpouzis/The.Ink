@@ -18,7 +18,7 @@ public class TimeController : MonoBehaviour
 {
     public GameObject player;
     public ArrayList keyframes;
-    public bool isReversing = false;
+    public bool isRewinding = false;
 
     public int keyframe = 5;
     private int frameCounter = 0;
@@ -29,31 +29,19 @@ public class TimeController : MonoBehaviour
     private Vector2 currentVelocity;
     private Vector2 previousVelocity;
 
-    private Camera camera;
 
-    private bool firstRun = true;
+    public bool firstRun = true;
 
     void Start()
     {
         keyframes = new ArrayList();
-        camera = Camera.main;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (!isRewinding)
         {
-            isReversing = true;
-            camera.GetComponent<CameraController>().isRewinding = true;
-        }
-        else
-        {
-            camera.GetComponent<CameraController>().isRewinding = false;
-            isReversing = false;
             firstRun = true;
-        }
-        if (!isReversing)
-        {
             if (frameCounter < keyframe)
             {
                 frameCounter += 1;

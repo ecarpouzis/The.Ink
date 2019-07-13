@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float cameraSpeed = 2f;
+    float cameraSpeed = 4f;
 
     private Vector2 velocity;
     public bool isRunning = false;
