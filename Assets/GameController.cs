@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
+        CharacterController.isRunning = true;
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class GameController : MonoBehaviour
 
             currentTimePoint = timePlaying - timeRewinding;
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5) || Input.GetKey(KeyCode.JoystickButton2))
             {
                 isRewinding = true;
                 CameraController.isRewinding = true;
