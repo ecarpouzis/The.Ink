@@ -843,7 +843,7 @@ namespace Spine.Unity.Editor {
 			float duration = animation.Duration;
 
 			AnimationCurve curve = new AnimationCurve();
-
+            
 			List<Keyframe> keys = new List<Keyframe>();
 
 			float rotation = bone.AppliedRotation;

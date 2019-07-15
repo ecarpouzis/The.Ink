@@ -18,6 +18,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     float jumpHeight = 4;
 
+    float fallMultiplier = 2.5f;
+    float lowJumpMultiplier = 2f;
+
     private BoxCollider2D boxCollider;
 
     public Vector2 velocity;
@@ -50,6 +53,15 @@ public class CharacterController2D : MonoBehaviour
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
                 }
+            }
+
+            if (velocity.y < 0)
+            {
+                velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if(velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
 
             float acceleration = grounded ? walkAcceleration : airAcceleration;
