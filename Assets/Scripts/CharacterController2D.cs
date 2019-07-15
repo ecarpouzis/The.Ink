@@ -43,6 +43,17 @@ public class CharacterController2D : MonoBehaviour
         {
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
             float moveInput = Input.GetAxis("Horizontal");
+            if (velocity.x > 0)
+            {
+                Vector3 newScale = transform.localScale;
+                newScale.x = -1;
+                transform.localScale = newScale;
+            } else if (velocity.x < 0)
+                {
+                    Vector3 newScale = transform.localScale;
+                    newScale.x = 1;
+                    transform.localScale = newScale;
+                }
 
             if (grounded)
             {

@@ -1,0 +1,48 @@
+
+Character.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 2, 2
+  size: 103, 239
+  orig: 103, 239
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 243, 28
+  size: 77, 180
+  orig: 77, 180
+  offset: 0, 0
+  index: -1
+Leg1
+  rotate: true
+  xy: 425, 28
+  size: 77, 136
+  orig: 77, 136
+  offset: 0, 0
+  index: -1
+Leg1_2
+  rotate: true
+  xy: 784, 63
+  size: 42, 102
+  orig: 42, 102
+  offset: 0, 0
+  index: -1
+Leg2
+  rotate: true
+  xy: 672, 62
+  size: 43, 110
+  orig: 43, 110
+  offset: 0, 0
+  index: -1
+Leg2_2
+  rotate: false
+  xy: 563, 29
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
