@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Spine.Unity;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
@@ -33,8 +34,25 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     private bool grounded;
     public bool isRunning = false;
-
+    public bool isDead = false;
     public float bounceVelocity = 10.00F;
+
+    public GameObject CharacterArt;
+    public GameObject DeathObject;
+
+
+    public void Die()
+    {
+        if (isDead != true)
+        {
+            isDead = true;
+            CharacterArt.SetActive(false);
+            DeathObject.SetActive(true);
+            var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
+            var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
+            deathAnim.TrackTime = 0;
+        }
+    }
 
     private void Awake()
     {      
@@ -46,6 +64,12 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isRunning)
         {
+            if (isDead && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5))) {
+
+                isDead = false;
+                CharacterArt.SetActive(true);
+                DeathObject.SetActive(false);
+            } else if (!isDead) { 
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
             float moveInput = Input.GetAxis("Horizontal");
             if (velocity.x > 0)
@@ -101,35 +125,44 @@ public class CharacterController2D : MonoBehaviour
             // Retrieve all colliders we have intersected after velocity has been applied.
             Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
 
-            foreach (Collider2D hit in hits)
-            {
-                // Ignore our own collider.
-                if (hit == boxCollider)
-                    continue;
-
-                ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-
-                // Ensure that we are still overlapping this collider.
-                // The overlap may no longer exist due to another intersected collider
-                // pushing us out of this one.
-                if (colliderDistance.isOverlapped)
+                foreach (Collider2D hit in hits)
                 {
-                    transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+                    // Ignore our own collider.
+                    if (hit == boxCollider)
+                        continue;
 
-                    // If we intersect an object beneath us, set grounded to true. 
-                    if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+                    ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+
+                    // Ensure that we are still overlapping this collider.
+                    // The overlap may no longer exist due to another intersected collider
+                    // pushing us out of this one.
+                    if (colliderDistance.isOverlapped)
                     {
-                        grounded = true;
+                        transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+
+                        // If we intersect an object beneath us, set grounded to true. 
+                        if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+                        {
+                            grounded = true;
+                        }
                     }
-                }
-                // Change the y axis velocity when colliding with objects which have the name of Bounce
-                // The law of gravity still applies.
-                if (hit.name == "Bounce")
-                {
-                    velocity.y = bounceVelocity;
+
+
+                    // Change the y axis velocity when colliding with objects which have the name of Bounce
+                    // The law of gravity still applies.
+                    if (hit.name == "Bounce")
+                    {
+                        velocity.y = bounceVelocity;
+                    }
+
+                    if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer"))
+                    {
+                        Die();
+                    }
                 }
 
             }
         }
+
     }
 }

@@ -4958,7 +4958,7 @@ GameObject:
   - component: {fileID: 295399931}
   - component: {fileID: 295399930}
   - component: {fileID: 295399929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine GameObject (Platform) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19858,7 +19858,10 @@ MonoBehaviour:
   jumpHeight: 5
   velocity: {x: 0, y: 0}
   isRunning: 0
+  isDead: 0
   bounceVelocity: 30
+  CharacterArt: {fileID: 1842176762}
+  DeathObject: {fileID: 701031179}
 --- !u!1 &1536302461
 GameObject:
   m_ObjectHideFlags: 0
