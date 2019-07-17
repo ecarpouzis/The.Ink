@@ -25,6 +25,8 @@ public class CharacterController2D : MonoBehaviour
 
     public Vector2 velocity;
 
+    public static CharacterController2D self;
+
     /// <summary>
     /// Set to true when the character intersects a collider beneath
     /// them in the previous frame.
@@ -32,9 +34,12 @@ public class CharacterController2D : MonoBehaviour
     private bool grounded;
     public bool isRunning = false;
 
+    public float bounceVelocity = 10.00F;
+
     private void Awake()
     {      
         boxCollider = GetComponent<BoxCollider2D>();
+        self = this;
     }
 
     private void Update()
@@ -117,6 +122,13 @@ public class CharacterController2D : MonoBehaviour
                         grounded = true;
                     }
                 }
+                // Change the y axis velocity when colliding with objects which have the name of Bounce
+                // The law of gravity still applies.
+                if (hit.name == "Bounce")
+                {
+                    velocity.y = bounceVelocity;
+                }
+
             }
         }
     }

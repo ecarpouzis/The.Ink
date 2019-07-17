@@ -9068,8 +9068,8 @@ GameObject:
   - component: {fileID: 657243779}
   - component: {fileID: 657243778}
   - component: {fileID: 657243777}
-  - component: {fileID: 657243780}
   - component: {fileID: 657243781}
+  - component: {fileID: 657243780}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9154,11 +9154,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 657243776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05802f2d226d97841b73afdda8967a4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c808bac4cafa6d458a420d3cb40139c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 0
-  isRewinding: 0
+  CameraController: {fileID: 657243781}
+  CharacterController: {fileID: 1533137392}
+  currentTimePoint: 0
+  TimeLeft: {fileID: 1999160699}
 --- !u!114 &657243781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9168,13 +9170,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 657243776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40927ffb15673149b8ec80f022ac3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 3da49efb55f235f4ea53b4fffe8b6bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraController: {fileID: 657243780}
-  CharacterController: {fileID: 1533137392}
-  currentTimePoint: 0
-  TimeLeft: {fileID: 1999160699}
+  isRunning: 0
+  isRewinding: 0
 --- !u!1 &657729363
 GameObject:
   m_ObjectHideFlags: 0
@@ -19315,7 +19315,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533137388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faeaa5917f81fc248aa3f8763dd0f5ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a4e176c158170741bc07d7802b3e7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1533137388}
@@ -19382,6 +19382,7 @@ MonoBehaviour:
   jumpHeight: 5
   velocity: {x: 0, y: 0}
   isRunning: 0
+  bounceVelocity: 30
 --- !u!1 &1536302461
 GameObject:
   m_ObjectHideFlags: 0
