@@ -1,0 +1,27 @@
+
+SplatSkeleton.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SplatCircle
+  rotate: false
+  xy: 2, 2
+  size: 130, 129
+  orig: 130, 129
+  offset: 0, 0
+  index: -1
+SplatLines
+  rotate: false
+  xy: 2, 133
+  size: 529, 538
+  orig: 529, 538
+  offset: 0, 0
+  index: -1
+SplatWord
+  rotate: false
+  xy: 533, 601
+  size: 128, 70
+  orig: 128, 70
+  offset: 0, 0
+  index: -1
