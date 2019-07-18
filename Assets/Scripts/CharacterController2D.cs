@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     float jumpHeight = 4;
 
+
     float fallMultiplier = 2.5f;
     float lowJumpMultiplier = 2f;
 
@@ -32,13 +33,12 @@ public class CharacterController2D : MonoBehaviour
     /// Set to true when the character intersects a collider beneath
     /// them in the previous frame.
     /// </summary>
-    private bool grounded;
+    public bool grounded;
     public bool isRunning = false;
     public bool isDead = false;
     public float bounceVelocity = 10.00F;
     TimeController myTime;
-
-    public GameObject CharacterArt;
+    public SkeletonAnimation skeletonAnimation;
     public GameObject DeathObject;
 
 
@@ -47,7 +47,7 @@ public class CharacterController2D : MonoBehaviour
         if (isDead != true)
         {
             isDead = true;
-            CharacterArt.SetActive(false);
+            skeletonAnimation.gameObject.SetActive(false);
             DeathObject.SetActive(true);
             var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
             var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
@@ -70,9 +70,9 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-
+            //Ceiling Check
             ColliderDistance2D colliderDistance = hit.collider.Distance(boxCollider);
-            if(Vector2.Angle(colliderDistance.normal, Vector2.up) > 90)
+            if (Vector2.Angle(colliderDistance.normal, Vector2.up) > 90)
             {
                 velocity.y = 0;
             }
@@ -86,7 +86,7 @@ public class CharacterController2D : MonoBehaviour
             if (isDead && (Input.GetButton("Rewind")))
             {
                 isDead = false;
-                CharacterArt.SetActive(true);
+                skeletonAnimation.gameObject.SetActive(true);
                 DeathObject.SetActive(false);
             }
             else if (!isDead)
@@ -106,18 +106,52 @@ public class CharacterController2D : MonoBehaviour
                     transform.localScale = newScale;
                 }
 
+                //If we're on the ground
                 if (grounded)
                 {
+                    //We should not have a y velocity
                     velocity.y = 0;
+
+                    string curAnim = skeletonAnimation.AnimationName;
+
+                    //If we're not moving and we're on the ground, we're Idling
+                    if (velocity.x == 0)
+                    {
+                        if (curAnim != "Idle")
+                        {
+                            skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+                        }
+                    }
+                    else
+                    {
+                        //Otherwise, we're running
+                        if (curAnim != "Run2")
+                        {
+                            skeletonAnimation.AnimationState.SetAnimation(0, "Run2", true);
+                        }
+                    }
 
                     if (Input.GetButtonDown("Jump"))
                     {
+                        grounded = false;
+                        if (skeletonAnimation.AnimationName != "Jump")
+                        {
+                            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
+                        }
                         // Calculate the velocity required to achieve the target jump height.
                         velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
+
                     }
                     if (Input.GetButtonUp("Jump"))
                     {
                         velocity.y = velocity.y * .5f;
+                    }
+                }
+                else
+                {
+                    if (skeletonAnimation.AnimationName != "Jump")
+                    {
+                        skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
                     }
                 }
 
@@ -141,12 +175,12 @@ public class CharacterController2D : MonoBehaviour
                 {
                     velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
                 }
-
-                velocity.y += Physics2D.gravity.y * 2 * Time.deltaTime;
+                if (!grounded)
+                {
+                    velocity.y += Physics2D.gravity.y * 2 * Time.deltaTime;
+                }
 
                 transform.Translate(velocity * Time.deltaTime);
-
-                grounded = false;
 
                 // Retrieve all colliders we have intersected after velocity has been applied.
                 Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
@@ -181,6 +215,10 @@ public class CharacterController2D : MonoBehaviour
                         velocity.y = bounceVelocity;
                     }
 
+                }
+                if (hits.Length == 0)
+                {
+                    grounded = false;
                 }
 
             }
