@@ -142,10 +142,6 @@ public class CharacterController2D : MonoBehaviour
                         velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
 
                     }
-                    if (Input.GetButtonUp("Jump"))
-                    {
-                        velocity.y = velocity.y * .5f;
-                    }
                 }
                 else
                 {
@@ -153,6 +149,11 @@ public class CharacterController2D : MonoBehaviour
                     {
                         skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
                     }
+                }
+
+                if (Input.GetButtonUp("Jump"))
+                {
+                    velocity.y = velocity.y * .75f;
                 }
 
                 if (velocity.y < 0)
