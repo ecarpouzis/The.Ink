@@ -36,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
     public bool isRunning = false;
     public bool isDead = false;
     public float bounceVelocity = 10.00F;
+    TimeController myTime;
 
     public GameObject CharacterArt;
     public GameObject DeathObject;
@@ -55,75 +56,100 @@ public class CharacterController2D : MonoBehaviour
     }
 
     private void Awake()
-    {      
+    {
+        myTime = GetComponent<TimeController>();
         boxCollider = GetComponent<BoxCollider2D>();
         self = this;
+    }
+
+    public void OnCollisionEnter2D(Collision2D hit)
+    {
+        if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer") && !myTime.isRewinding)
+        {
+            Die();
+        }
+        else
+        {
+
+            ColliderDistance2D colliderDistance = hit.collider.Distance(boxCollider);
+            if(Vector2.Angle(colliderDistance.normal, Vector2.up) > 90)
+            {
+                velocity.y = 0;
+            }
+        }
     }
 
     private void Update()
     {
         if (isRunning)
         {
-            if (isDead && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5))) {
-
+            if (isDead && (Input.GetButton("Rewind")))
+            {
                 isDead = false;
                 CharacterArt.SetActive(true);
                 DeathObject.SetActive(false);
-            } else if (!isDead) { 
-            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            float moveInput = Input.GetAxis("Horizontal");
-            if (velocity.x > 0)
+            }
+            else if (!isDead)
             {
-                Vector3 newScale = transform.localScale;
-                newScale.x = -1;
-                transform.localScale = newScale;
-            } else if (velocity.x < 0)
+                // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
+                float moveInput = Input.GetAxis("Horizontal");
+                if (velocity.x > 0)
+                {
+                    Vector3 newScale = transform.localScale;
+                    newScale.x = -1;
+                    transform.localScale = newScale;
+                }
+                else if (velocity.x < 0)
                 {
                     Vector3 newScale = transform.localScale;
                     newScale.x = 1;
                     transform.localScale = newScale;
                 }
 
-            if (grounded)
-            {
-                velocity.y = 0;
-
-                if (Input.GetButtonDown("Jump"))
+                if (grounded)
                 {
-                    // Calculate the velocity required to achieve the target jump height.
-                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                    velocity.y = 0;
+
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        // Calculate the velocity required to achieve the target jump height.
+                        velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
+                    }
+                    if (Input.GetButtonUp("Jump"))
+                    {
+                        velocity.y = velocity.y * .5f;
+                    }
                 }
-            }
 
-            if (velocity.y < 0)
-            {
-                velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            }
-            else if(velocity.y > 0 && !Input.GetButton("Jump"))
-            {
-                velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-            }
+                if (velocity.y < 0)
+                {
+                    velocity += Vector2.up * Physics2D.gravity.y * 2 * (fallMultiplier - 1) * Time.deltaTime;
+                }
+                else if (velocity.y > 0 && !Input.GetButton("Jump"))
+                {
+                    velocity += Vector2.up * Physics2D.gravity.y * 2 * (lowJumpMultiplier - 1) * Time.deltaTime;
+                }
 
-            float acceleration = grounded ? walkAcceleration : airAcceleration;
-            float deceleration = grounded ? groundDeceleration : 0;
+                float acceleration = grounded ? walkAcceleration : airAcceleration;
+                float deceleration = grounded ? groundDeceleration : 0;
 
-            if (moveInput != 0)
-            {
-                velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
-            }
-            else
-            {
-                velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-            }
+                if (moveInput != 0)
+                {
+                    velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+                }
+                else
+                {
+                    velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+                }
 
-            velocity.y += Physics2D.gravity.y * Time.deltaTime;
+                velocity.y += Physics2D.gravity.y * 2 * Time.deltaTime;
 
-            transform.Translate(velocity * Time.deltaTime);
+                transform.Translate(velocity * Time.deltaTime);
 
-            grounded = false;
+                grounded = false;
 
-            // Retrieve all colliders we have intersected after velocity has been applied.
-            Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
+                // Retrieve all colliders we have intersected after velocity has been applied.
+                Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
 
                 foreach (Collider2D hit in hits)
                 {
@@ -155,10 +181,6 @@ public class CharacterController2D : MonoBehaviour
                         velocity.y = bounceVelocity;
                     }
 
-                    if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer"))
-                    {
-                        Die();
-                    }
                 }
 
             }

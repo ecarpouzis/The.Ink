@@ -16,7 +16,7 @@ public class PositionKeyframe
 
 public class TimeController : MonoBehaviour
 {
-    public GameObject player;
+    public CharacterController2D player;
     public ArrayList keyframes;
     public bool isRewinding = false;
 
@@ -32,6 +32,11 @@ public class TimeController : MonoBehaviour
 
     public bool firstRun = true;
 
+    void Awake()
+    {
+        player = GetComponent<CharacterController2D>();
+    }
+
     void Start()
     {
         keyframes = new ArrayList();
@@ -42,14 +47,17 @@ public class TimeController : MonoBehaviour
         if (!isRewinding)
         {
             firstRun = true;
-            if (frameCounter < keyframe)
+            if (!player.isDead)
             {
-                frameCounter += 1;
-            }
-            else
-            {
-                frameCounter = 0;
-                keyframes.Add(new PositionKeyframe(player.transform.position, player.GetComponent<CharacterController2D>().velocity));
+                if (frameCounter < keyframe)
+                {
+                    frameCounter += 1;
+                }
+                else
+                {
+                    frameCounter = 0;
+                    keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
+                }
             }
         }
         else
@@ -72,7 +80,7 @@ public class TimeController : MonoBehaviour
 
             float interpolation = (float)reverseCounter / (float)keyframe;
             player.transform.position = Vector2.Lerp(previousPosition, currentPosition, interpolation);
-            player.GetComponent<CharacterController2D>().velocity = Vector2.Lerp(previousVelocity, currentVelocity, interpolation);
+            player.velocity = Vector2.Lerp(previousVelocity, currentVelocity, interpolation);
         }
 
         //if (keyframes.Count > 128)
@@ -80,7 +88,7 @@ public class TimeController : MonoBehaviour
         //    keyframes.RemoveAt(0);
         //}
     }
-    
+
     void RestorePositions()
     {
         int lastIndex = keyframes.Count - 1;
