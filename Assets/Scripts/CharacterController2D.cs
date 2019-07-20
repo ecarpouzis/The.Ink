@@ -24,7 +24,7 @@ public class CharacterController2D : MonoBehaviour
     float fallMultiplier = 2.5f;
     float lowJumpMultiplier = 2f;
 
-    private CapsuleCollider2D boxCollider;
+    private BoxCollider2D boxCollider;
 
     public Vector2 velocity;
 
@@ -58,16 +58,34 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         myTime = GetComponent<TimeController>();
-        boxCollider = GetComponent<CapsuleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         self = this;
     }
 
     public void OnCollisionEnter2D(Collision2D hit)
     {
-
         if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer") && !GameController.G.isRewinding)
         {
             Die();
+        }
+
+        AngleCollideCheck(hit.collider);
+    }
+
+    private void AngleCollideCheck(Collider2D hit)
+    {
+        ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+        float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
+        Debug.Log(angle);
+        if (angle == 180)
+        {
+            velocity.y = 0;
+        }
+        if (angle == 0)
+        {
+            velocity.y = 0;
+            grounded = true;
+
         }
     }
 
@@ -145,8 +163,7 @@ public class CharacterController2D : MonoBehaviour
                 }
 
 
-
-
+                
                 if (velocity.y < 0)
                 {
                     velocity += Vector2.up * Physics2D.gravity.y * 2 * (fallMultiplier - 1) * Time.deltaTime;
@@ -191,17 +208,7 @@ public class CharacterController2D : MonoBehaviour
                     {
                         transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
 
-                        float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
-                        if (angle == 180)
-                        {
-                            velocity.y = 0;
-                        }
-                        if (angle == 0)
-                        {
-                            velocity.y = 0;
-                            grounded = true;
-
-                        }
+                        AngleCollideCheck(hit);
                     }
 
 
