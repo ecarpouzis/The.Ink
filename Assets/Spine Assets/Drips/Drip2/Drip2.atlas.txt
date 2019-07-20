@@ -1,0 +1,13 @@
+
+Drip2.png
+size: 64,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Drip5
+  rotate: false
+  xy: 2, 2
+  size: 54, 174
+  orig: 54, 174
+  offset: 0, 0
+  index: -1

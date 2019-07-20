@@ -37,7 +37,6 @@ public class CharacterController2D : MonoBehaviour
     public bool grounded;
     public bool isDead = false;
     public float bounceVelocity = 10.00F;
-    TimeController myTime;
     public SkeletonAnimation skeletonAnimation;
     public GameObject DeathObject;
 
@@ -57,7 +56,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
-        myTime = GetComponent<TimeController>();
         boxCollider = GetComponent<BoxCollider2D>();
         self = this;
     }
@@ -76,7 +74,6 @@ public class CharacterController2D : MonoBehaviour
     {
         ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
         float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
-        Debug.Log(angle);
         if (angle == 180)
         {
             velocity.y = 0;
