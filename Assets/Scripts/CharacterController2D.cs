@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Spine.Unity;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
@@ -34,7 +35,6 @@ public class CharacterController2D : MonoBehaviour
     /// them in the previous frame.
     /// </summary>
     public bool grounded;
-    public bool isRunning = false;
     public bool isDead = false;
     public float bounceVelocity = 10.00F;
     TimeController myTime;
@@ -64,32 +64,24 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D hit)
     {
-        if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer") && !myTime.isRewinding)
+
+        if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer") && !GameController.G.isRewinding)
         {
             Die();
-        }
-        else
-        {
-            //Ceiling Check
-            ColliderDistance2D colliderDistance = hit.collider.Distance(boxCollider);
-            if (Vector2.Angle(colliderDistance.normal, Vector2.up) > 90)
-            {
-                velocity.y = 0;
-            }
         }
     }
 
     private void Update()
     {
-        if (isRunning)
+        if (GameController.G.isPlaying)
         {
-            if (isDead && (Input.GetButton("Rewind")))
+            if (isDead && GameController.G.isRewinding)
             {
                 isDead = false;
                 skeletonAnimation.gameObject.SetActive(true);
                 DeathObject.SetActive(false);
             }
-            else if (!isDead)
+            else if (!isDead && !GameController.G.isRewinding)
             {
                 // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
                 float moveInput = Input.GetAxis("Horizontal");
@@ -114,6 +106,18 @@ public class CharacterController2D : MonoBehaviour
 
                     string curAnim = skeletonAnimation.AnimationName;
 
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        grounded = false;
+                        if (skeletonAnimation.AnimationName != "Jump")
+                        {
+                            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
+                        }
+
+                        // Calculate the velocity required to achieve the target jump height.
+                        velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
+                    }
+                    
                     //If we're not moving and we're on the ground, we're Idling
                     if (velocity.x == 0)
                     {
@@ -131,17 +135,6 @@ public class CharacterController2D : MonoBehaviour
                         }
                     }
 
-                    if (Input.GetButtonDown("Jump"))
-                    {
-                        grounded = false;
-                        if (skeletonAnimation.AnimationName != "Jump")
-                        {
-                            skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
-                        }
-                        // Calculate the velocity required to achieve the target jump height.
-                        velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
-
-                    }
                 }
                 else
                 {
@@ -151,10 +144,8 @@ public class CharacterController2D : MonoBehaviour
                     }
                 }
 
-                if (Input.GetButtonUp("Jump"))
-                {
-                    velocity.y = velocity.y * .75f;
-                }
+
+
 
                 if (velocity.y < 0)
                 {
@@ -185,12 +176,11 @@ public class CharacterController2D : MonoBehaviour
 
                 // Retrieve all colliders we have intersected after velocity has been applied.
                 Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
+                List<Collider2D> hitList = new List<Collider2D>(hits);
+                hitList.Remove(boxCollider);
 
-                foreach (Collider2D hit in hits)
+                foreach (Collider2D hit in hitList)
                 {
-                    // Ignore our own collider.
-                    if (hit == boxCollider)
-                        continue;
 
                     ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
@@ -201,10 +191,16 @@ public class CharacterController2D : MonoBehaviour
                     {
                         transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
 
-                        // If we intersect an object beneath us, set grounded to true. 
-                        if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+                        float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
+                        if (angle == 180)
                         {
+                            velocity.y = 0;
+                        }
+                        if (angle == 0)
+                        {
+                            velocity.y = 0;
                             grounded = true;
+
                         }
                     }
 
@@ -217,7 +213,7 @@ public class CharacterController2D : MonoBehaviour
                     }
 
                 }
-                if (hits.Length == 0)
+                if (hitList.Count == 0)
                 {
                     grounded = false;
                 }

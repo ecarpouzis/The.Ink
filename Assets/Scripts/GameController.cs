@@ -10,18 +10,19 @@ public class GameController : MonoBehaviour
     public CameraController CameraController;
     public CharacterController2D CharacterController;
     TimeController characterTimeController;
-    bool isRewinding = false;
-    bool isPlaying = false;
+    public static GameController G;
+    public bool isRewinding = false;
+    public bool isPlaying = false;
     float timePlaying = 0f;
     float timeRewinding = 0f;
     public float currentTimePoint = 0f;
     public UnityEngine.UI.Text TimeLeft;
-
-    // Start is called before the first frame update
-    void Start()
+    public float percThroughTime;
+    
+    private void Awake()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
-        CharacterController.isRunning = true;
+        G = this;
     }
 
     // Update is called once per frame
@@ -45,19 +46,16 @@ public class GameController : MonoBehaviour
 
             //Total time elapsed since game start
             currentTimePoint = timePlaying - timeRewinding;
+            percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
 
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton5) || Input.GetKey(KeyCode.JoystickButton2))
+            if (Input.GetButton("Rewind")
                 && timeRewinding <= timePlaying)
             {
                 isRewinding = true;
-                CameraController.isRewinding = true;
-                characterTimeController.isRewinding = true;
             }
             else
             {
                 isRewinding = false;
-                CameraController.isRewinding = false;
-                characterTimeController.isRewinding = false;
             }
 
             TimeLeft.text = GetSecondsLeftAsString();
@@ -78,7 +76,5 @@ public class GameController : MonoBehaviour
     void StartPlaying()
     {
         isPlaying = true;
-        CameraController.isRunning = true;
-        CharacterController.isRunning = true;
     }
 }

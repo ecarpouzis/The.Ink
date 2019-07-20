@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float cameraSpeed = 4f;
-
-    private Vector2 velocity;
-    public bool isRunning = false;
-    public bool isRewinding = false;
-    private Vector2 cameraStartPos;
+    private Vector3 startPosition;
+    private Vector3 endPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        cameraStartPos = transform.position;
-        velocity.y = cameraSpeed;
+        startPosition = transform.position;
+        endPosition = transform.position;
+        endPosition.y += 250;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isRunning)
+        if (GameController.G.isPlaying)
         {
-            transform.Translate(velocity * Time.deltaTime * Vector2.up, Space.World);
-            if (isRewinding && transform.position.y >= cameraStartPos.y)
-            {
-                transform.Translate(Vector2.down * velocity * Time.deltaTime * 2, Space.World);
-            }
+            transform.position = Vector3.Lerp(startPosition, endPosition, GameController.G.percThroughTime);
         }
     }
 }

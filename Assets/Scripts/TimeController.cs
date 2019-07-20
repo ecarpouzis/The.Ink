@@ -18,7 +18,6 @@ public class TimeController : MonoBehaviour
 {
     public CharacterController2D player;
     public ArrayList keyframes;
-    public bool isRewinding = false;
 
     public int keyframe = 5;
     private int frameCounter = 0;
@@ -42,51 +41,52 @@ public class TimeController : MonoBehaviour
         keyframes = new ArrayList();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (!isRewinding)
+        if (GameController.G.isPlaying)
         {
-            firstRun = true;
-            if (!player.isDead)
+            if (!GameController.G.isRewinding)
             {
-                if (frameCounter < keyframe)
+                firstRun = true;
+                if (!player.isDead)
                 {
-                    frameCounter += 1;
-                }
-                else
-                {
-                    frameCounter = 0;
-                    keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
+                    if (frameCounter < keyframe)
+                    {
+                        frameCounter += 1;
+                    }
+                    else
+                    {
+                        frameCounter = 0;
+                        keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
+                    }
                 }
             }
-        }
-        else
-        {
-            if (reverseCounter > 0)
+            else if (keyframes.Count == 1 && GameController.G.isRewinding)
             {
-                reverseCounter -= 1;
             }
             else
             {
-                reverseCounter = keyframe;
-                RestorePositions();
-            }
+                if (reverseCounter > 0)
+                {
+                    reverseCounter -= 1;
+                }
+                else
+                {
+                    reverseCounter = keyframe;
+                    RestorePositions();
+                }
 
-            if (firstRun)
-            {
-                firstRun = false;
-                RestorePositions();
-            }
+                if (firstRun)
+                {
+                    firstRun = false;
+                    RestorePositions();
+                }
 
-            float interpolation = (float)reverseCounter / (float)keyframe;
-            player.transform.position = Vector2.Lerp(previousPosition, currentPosition, interpolation);
-            player.velocity = Vector2.Lerp(previousVelocity, currentVelocity, interpolation);
+                float interpolation = (float)reverseCounter / (float)keyframe;
+                player.transform.position = Vector2.Lerp(previousPosition, currentPosition, interpolation);
+                player.velocity = Vector2.Lerp(previousVelocity, currentVelocity, interpolation);
+            }
         }
-
-        //if (keyframes.Count > 128)
-        //{
-        //    keyframes.RemoveAt(0);
-        //}
     }
 
     void RestorePositions()
