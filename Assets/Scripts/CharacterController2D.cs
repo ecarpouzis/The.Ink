@@ -24,7 +24,7 @@ public class CharacterController2D : MonoBehaviour
     float fallMultiplier = 2.5f;
     float lowJumpMultiplier = 2f;
 
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D boxCollider;
 
     public Vector2 velocity;
 
@@ -58,7 +58,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         myTime = GetComponent<TimeController>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<CapsuleCollider2D>();
         self = this;
     }
 
