@@ -48,8 +48,7 @@ public class TimeController : MonoBehaviour
             if (!GameController.G.isRewinding)
             {
                 firstRun = true;
-                if (!player.isDead)
-                {
+                
                     if (frameCounter < keyframe)
                     {
                         frameCounter += 1;
@@ -59,7 +58,7 @@ public class TimeController : MonoBehaviour
                         frameCounter = 0;
                         keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
                     }
-                }
+                
             }
             else
             {

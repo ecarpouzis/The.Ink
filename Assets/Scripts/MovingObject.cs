@@ -5,10 +5,12 @@ using UnityEngine;
 public class MovingObject : MonoBehaviour
 {
 
+    public bool invisWhenReachDestination = false;
+    public bool useLocalSpace = false;
     public bool flipOnLoop;
     public bool loopMovement;
-    public Vector2 startPosition;
-    public Vector2 endPosition;
+    public Vector3 startPosition;
+    public Vector3 endPosition;
     public float delay;
     public float speed = 1;
     public float offsetTime = 0f;
@@ -18,7 +20,7 @@ public class MovingObject : MonoBehaviour
     Collider2D myCollider;
     bool isFirstMovementScript = true;
     float nextDelay = 999;
-    bool munchRunOnce = false;
+    public int order;
 
     private void Awake()
     {
@@ -81,24 +83,36 @@ public class MovingObject : MonoBehaviour
                 if (GameController.G.currentTimePoint - delay > 0 && GameController.G.currentTimePoint < nextDelay)
                 {
                     myMesh.enabled = true;
-                    myCollider.enabled = true;
+
+                    if (myCollider != null)
+                    {
+                        myCollider.enabled = true;
+                    }
                     if (transform.name == "Munch")
                     {
-                        //Hardcoded Munch's local movement, z value, and rotation decision tree:
-                        Vector3 newPos = Vector2.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed);
-                        newPos.z = 9;
-                        transform.localPosition = newPos;
-                        if (!isFirstMovementScript && !munchRunOnce)
+                        //Hardcoded Munch's rotation tree
+                        Vector3 newRot = transform.rotation.eulerAngles;
+                        switch (order)
                         {
-                            Vector3 newRot = transform.rotation.eulerAngles;
-                            newRot.z += 90;
-                            transform.rotation = Quaternion.Euler(newRot);
-                            munchRunOnce = true;
+                            case 1:
+                                newRot.z = 90;
+                                break;
+                            case 2:
+                                newRot.z = 180;
+                                break;
+                            case 3:
+                                newRot.z = 270;
+                                break;
                         }
+                        transform.rotation = Quaternion.Euler(newRot);
+                    }
+                    if (useLocalSpace)
+                    {
+                        transform.localPosition = Vector3.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed);
                     }
                     else
                     {
-                        transform.position = Vector2.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed);
+                        transform.position = Vector3.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed);
                     }
                 }
                 else
@@ -106,16 +120,29 @@ public class MovingObject : MonoBehaviour
                     //It is before my delay, and I am the first movement script to trigger.
                     if (isFirstMovementScript && GameController.G.currentTimePoint - delay < 0)
                     {
-                        //If I'm the first movement script, disable my collider and mesh before the delay is up
-                        myMesh.enabled = false;
-                        if (myCollider != null)
-                        {
-                            myCollider.enabled = false;
-                        }
+                        HideMe();
 
                     }
                 }
             }
+            if ((adjustedTime - delay) * speed > 1)
+            {
+                if (invisWhenReachDestination)
+                {
+                    HideMe();
+                }
+            }
         }
     }
+
+    void HideMe()
+    {
+        //If I'm the first movement script, disable my collider and mesh before the delay is up
+        myMesh.enabled = false;
+        if (myCollider != null)
+        {
+            myCollider.enabled = false;
+        }
+    }
+
 }

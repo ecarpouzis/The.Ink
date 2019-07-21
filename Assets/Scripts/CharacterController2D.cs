@@ -50,7 +50,16 @@ public class CharacterController2D : MonoBehaviour
             var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
             var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
             deathAnim.TrackTime = 0;
+            GetComponent<Rigidbody2D>().isKinematic = true;
         }
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        skeletonAnimation.gameObject.SetActive(true);
+        DeathObject.SetActive(false);
     }
 
     private void Awake()
@@ -113,9 +122,7 @@ public class CharacterController2D : MonoBehaviour
         {
             if (isDead && GameController.G.isRewinding)
             {
-                isDead = false;
-                skeletonAnimation.gameObject.SetActive(true);
-                DeathObject.SetActive(false);
+                Revive();
             }
             else if (!isDead && !GameController.G.isRewinding)
             {

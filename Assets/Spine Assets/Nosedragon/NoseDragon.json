@@ -1,0 +1,83 @@
+{
+"skeleton": {
+	"hash": "enJSzoStjPExs8uW3uyHalBDqJE",
+	"spine": "3.8.51-beta",
+	"x": -847.79,
+	"y": -1189.84,
+	"width": 1525,
+	"height": 1838,
+	"images": "Y:/Network Share/InkGame/Nosedragon/images/",
+	"audio": "Y:/Network Share/InkGame/Nosedragon"
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "LowerJaw", "bone": "root", "attachment": "LowerJaw" },
+	{ "name": "UpperJaw", "bone": "root", "attachment": "UpperJaw" },
+	{ "name": "Nose", "bone": "root", "attachment": "Nose" },
+	{ "name": "Nosebubble2", "bone": "root", "attachment": "Nosebubble2" },
+	{ "name": "Nosebubble", "bone": "root", "attachment": "Nosebubble" },
+	{ "name": "NoseTendrils", "bone": "root", "attachment": "NoseTendrils" },
+	{ "name": "Drip4", "bone": "root", "attachment": "Drip4" },
+	{ "name": "Drip3", "bone": "root", "attachment": "Drip3" },
+	{ "name": "Drip2", "bone": "root", "attachment": "Drip2" },
+	{ "name": "Drip1", "bone": "root", "attachment": "Drip1" },
+	{ "name": "Eyelash", "bone": "root", "attachment": "Eyelash" },
+	{ "name": "Pupil", "bone": "root", "attachment": "Pupil" },
+	{ "name": "MoosemanLegs", "bone": "root", "attachment": "MoosemanLegs" },
+	{ "name": "MoosemanBody", "bone": "root", "attachment": "MoosemanBody" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"MoosemanLegs": {
+				"MoosemanLegs": { "x": -237.29, "y": 511.16, "width": 45, "height": 66 }
+			},
+			"Pupil": {
+				"Pupil": { "x": -50.29, "y": 138.66, "width": 95, "height": 95 }
+			},
+			"Drip4": {
+				"Drip4": { "x": 490.71, "y": -1041.84, "width": 123, "height": 156 }
+			},
+			"Nosebubble2": {
+				"Nosebubble2": { "x": 415.21, "y": -768.34, "width": 78, "height": 73 }
+			},
+			"MoosemanBody": {
+				"MoosemanBody": { "x": -232.29, "y": 588.66, "width": 65, "height": 119 }
+			},
+			"Nosebubble": {
+				"Nosebubble": { "x": 357.21, "y": -791.34, "width": 26, "height": 23 }
+			},
+			"Eyelash": {
+				"Eyelash": { "x": -36.29, "y": 137.16, "width": 269, "height": 300 }
+			},
+			"Drip3": {
+				"Drip3": { "x": 499.21, "y": -993.34, "width": 114, "height": 145 }
+			},
+			"Nose": {
+				"Nose": { "x": 217.21, "y": -324.34, "width": 920, "height": 1497 }
+			},
+			"NoseTendrils": {
+				"NoseTendrils": { "x": 361.21, "y": -494.34, "width": 192, "height": 369 }
+			},
+			"Drip1": {
+				"Drip1": { "x": 592.21, "y": -1044.34, "width": 126, "height": 291 }
+			},
+			"Drip2": {
+				"Drip2": { "x": 546.21, "y": -1052.84, "width": 86, "height": 224 }
+			},
+			"UpperJaw": {
+				"UpperJaw": { "x": -376.29, "y": 254.66, "width": 943, "height": 515 }
+			},
+			"LowerJaw": {
+				"LowerJaw": { "x": -212.29, "y": -200.84, "width": 1031, "height": 856 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

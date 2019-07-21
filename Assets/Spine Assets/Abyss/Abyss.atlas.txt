@@ -1,0 +1,13 @@
+
+Abyss.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 2466, 2978
+  orig: 2466, 2978
+  offset: 0, 0
+  index: -1

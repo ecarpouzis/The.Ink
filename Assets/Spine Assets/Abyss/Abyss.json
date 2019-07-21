@@ -1,0 +1,22 @@
+{
+"skeleton": { "hash": "7a9ro+VQZ5rLMCLyyRicQs1x83A", "spine": "3.8.49-beta", "images": "Y:/Network Share/InkGame/Abyss/images/", "audio": "Y:\\Network Share\\InkGame\\Abyss" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Layer 0", "bone": "root", "attachment": "Layer 0" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Layer 0": {
+				"Layer 0": { "x": 146.44, "y": 124.27, "width": 2466, "height": 2978 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}
