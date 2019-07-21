@@ -12,7 +12,9 @@ public class GameController : MonoBehaviour
     TimeController characterTimeController;
     public static GameController G;
     public bool isRewinding = false;
+    bool prevRewindState = false;
     public bool isPlaying = false;
+
     float timePlaying = 0f;
     float timeRewinding = 0f;
     public float currentTimePoint = 0f;
@@ -33,7 +35,7 @@ public class GameController : MonoBehaviour
     {
         timeSinceRewind += Time.deltaTime;
         timeSinceStart += Time.deltaTime;
-        if (timeSinceStart > timeToStart)
+        if (timeSinceStart > timeToStart && !isPlaying)
         {
             StartPlaying();
         }
@@ -72,7 +74,28 @@ public class GameController : MonoBehaviour
                 isRewinding = false;
             }
 
+             if (isRewinding && !prevRewindState)
+            {
+                OnRewindStart();
+            }
+             else if(!isRewinding && prevRewindState)
+            {
+                OnRewindStop();
+            }
+
+            prevRewindState = isRewinding;
+
         }
+    }
+
+    void OnRewindStart()
+    {
+        MusicController.m.StartRewoundMusic();
+    }
+
+    void OnRewindStop()
+    {
+        MusicController.m.StartForwardMusic();
     }
 
     int GetSecondsLeft()
@@ -84,10 +107,9 @@ public class GameController : MonoBehaviour
         return (maxGameTime - (int)currentTimePoint).ToString();
     }
 
-
-
     void StartPlaying()
     {
+        MusicController.m.StartForwardMusic();
         isPlaying = true;
     }
 }
