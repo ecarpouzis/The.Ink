@@ -1264,7 +1264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329699716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.92, y: 57.22, z: 0}
+  m_LocalPosition: {x: 24.6, y: 57.22, z: 0}
   m_LocalScale: {x: 3.59, y: 2.3, z: 1}
   m_Children: []
   m_Father: {fileID: 5302389049599642105}
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   loopMovement: 0
   startPosition: {x: 1.3, y: -8, z: 0}
   endPosition: {x: 1.3, y: 30, z: 0}
-  delay: 37.19
+  delay: 35
   speed: 0.23
   offsetTime: 0
   order: 0
@@ -4498,10 +4498,10 @@ MonoBehaviour:
   useLocalSpace: 1
   flipOnLoop: 0
   loopMovement: 0
-  startPosition: {x: -14.7, y: -17.4, z: 0}
-  endPosition: {x: -14.7, y: 40, z: 0}
-  delay: 37
-  speed: 0.41
+  startPosition: {x: -9, y: -17.4, z: 0}
+  endPosition: {x: -9, y: 40, z: 0}
+  delay: 45
+  speed: 0.35
   offsetTime: 0
   order: 0
 --- !u!114 &1084689744
@@ -7398,9 +7398,9 @@ MonoBehaviour:
   useLocalSpace: 1
   flipOnLoop: 0
   loopMovement: 0
-  startPosition: {x: 4.5, y: -8, z: 0}
-  endPosition: {x: 4.5, y: 36, z: 0}
-  delay: 38.79
+  startPosition: {x: -4.5, y: -8, z: 0}
+  endPosition: {x: -4.5, y: 36, z: 0}
+  delay: 36
   speed: 0.15
   offsetTime: 0
   order: 0
