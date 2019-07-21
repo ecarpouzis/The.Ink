@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour
 {
-
+    public bool startAtOriginalGamespot = false;
     public bool invisWhenReachDestination = false;
     public bool useLocalSpace = false;
     public bool flipOnLoop;
@@ -16,7 +16,7 @@ public class MovingObject : MonoBehaviour
     public float offsetTime = 0f;
     float prevLoopPoint;
     float curLoopPoint;
-    MeshRenderer myMesh;
+    Renderer myRender;
     Collider2D myCollider;
     bool isFirstMovementScript = true;
     float nextDelay = 999;
@@ -24,12 +24,24 @@ public class MovingObject : MonoBehaviour
 
     private void Awake()
     {
-        myMesh = GetComponent<MeshRenderer>();
+        myRender = GetComponent<Renderer>();
         myCollider = GetComponent<Collider2D>();
     }
 
     private void Start()
     {
+        if (startAtOriginalGamespot)
+        {
+            if (!useLocalSpace)
+            {
+                startPosition = transform.position;
+            }
+            else
+            {
+                startPosition = transform.localPosition;
+            }
+        }
+
         MovingObject[] movementScripts = GetComponents<MovingObject>();
         float myDelay = delay;
         foreach (MovingObject o in movementScripts)
@@ -82,7 +94,7 @@ public class MovingObject : MonoBehaviour
             {
                 if (GameController.G.currentTimePoint - delay > 0 && GameController.G.currentTimePoint < nextDelay)
                 {
-                    myMesh.enabled = true;
+                    myRender.enabled = true;
 
                     if (myCollider != null)
                     {
@@ -138,7 +150,7 @@ public class MovingObject : MonoBehaviour
     void HideMe()
     {
         //If I'm the first movement script, disable my collider and mesh before the delay is up
-        myMesh.enabled = false;
+        myRender.enabled = false;
         if (myCollider != null)
         {
             myCollider.enabled = false;
