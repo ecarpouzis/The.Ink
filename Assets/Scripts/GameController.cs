@@ -18,7 +18,10 @@ public class GameController : MonoBehaviour
     public float currentTimePoint = 0f;
     public UnityEngine.UI.Text TimeLeft;
     public float percThroughTime;
-    
+
+    public float timeSinceRewind = 0f;
+    float minTimeBetweenRewinds = .25f;
+
     private void Awake()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
@@ -28,6 +31,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeSinceRewind += Time.deltaTime;
         timeSinceStart += Time.deltaTime;
         if (timeSinceStart > timeToStart)
         {
@@ -48,17 +52,26 @@ public class GameController : MonoBehaviour
             currentTimePoint = timePlaying - timeRewinding;
             percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
 
-            if (Input.GetButton("Rewind")
-                && timeRewinding <= timePlaying)
+            TimeLeft.text = GetSecondsLeftAsString();
+
+            if (GameController.G.currentTimePoint > 0)
             {
-                isRewinding = true;
+                if (Input.GetButton("Rewind") && timeSinceRewind > minTimeBetweenRewinds)
+                {
+                    isRewinding = true;
+                }
+                if (Input.GetButtonUp("Rewind"))
+                {
+                    timeSinceRewind = 0;
+                    isRewinding = false;
+                }
             }
             else
             {
+                timeSinceRewind = 0;
                 isRewinding = false;
             }
 
-            TimeLeft.text = GetSecondsLeftAsString();
         }
     }
 

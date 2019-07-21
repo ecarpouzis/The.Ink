@@ -36,7 +36,6 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     public bool grounded;
     public bool isDead = false;
-    public float bounceVelocity = 10.00F;
     public SkeletonAnimation skeletonAnimation;
     public GameObject DeathObject;
 
@@ -62,28 +61,50 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D hit)
     {
-        if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer") && !GameController.G.isRewinding)
-        {
-            Die();
-        }
-
+        SpecialHitTypeCheck(hit.collider);
         AngleCollideCheck(hit.collider);
     }
 
     private void AngleCollideCheck(Collider2D hit)
     {
-        ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-        float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
-        if (angle == 180)
+        if (hit.gameObject.layer == LayerMask.NameToLayer("Default"))
         {
-            velocity.y = 0;
-        }
-        if (angle == 0)
-        {
-            velocity.y = 0;
-            grounded = true;
+            ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+            float angle = Vector2.Angle(colliderDistance.normal, Vector2.up);
+            if (angle == 180)
+            {
+                velocity.y = 0;
+            }
+            if (angle == 0)
+            {
+                velocity.y = 0;
+                grounded = true;
 
+            }
         }
+    }
+
+    void SpecialHitTypeCheck(Collider2D hit)
+    {
+        if (!GameController.G.isRewinding)
+        {
+            if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer"))
+            {
+                Die();
+            }
+            else if (hit.gameObject.layer == LayerMask.NameToLayer("Bouncy"))
+            {
+                float bounceVelocity = hit.GetComponent<Bounciness>().bounciness;
+                Bounce(bounceVelocity);
+            }
+        }
+    }
+
+    void Bounce(float bounceVelocity)
+    {
+
+        velocity.y = bounceVelocity;
+        grounded = false;
     }
 
     private void Update()
@@ -132,7 +153,7 @@ public class CharacterController2D : MonoBehaviour
                         // Calculate the velocity required to achieve the target jump height.
                         velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y * 2));
                     }
-                    
+
                     //If we're not moving and we're on the ground, we're Idling
                     if (velocity.x == 0)
                     {
@@ -149,7 +170,6 @@ public class CharacterController2D : MonoBehaviour
                             skeletonAnimation.AnimationState.SetAnimation(0, "Run2", true);
                         }
                     }
-
                 }
                 else
                 {
@@ -159,8 +179,6 @@ public class CharacterController2D : MonoBehaviour
                     }
                 }
 
-
-                
                 if (velocity.y < 0)
                 {
                     velocity += Vector2.up * Physics2D.gravity.y * 2 * (fallMultiplier - 1) * Time.deltaTime;
@@ -195,7 +213,6 @@ public class CharacterController2D : MonoBehaviour
 
                 foreach (Collider2D hit in hitList)
                 {
-
                     ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
                     // Ensure that we are still overlapping this collider.
@@ -203,19 +220,13 @@ public class CharacterController2D : MonoBehaviour
                     // pushing us out of this one.
                     if (colliderDistance.isOverlapped)
                     {
-                        transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
-
+                        if (!GameController.G.isRewinding)
+                        {
+                            transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+                        }
                         AngleCollideCheck(hit);
+                        SpecialHitTypeCheck(hit);
                     }
-
-
-                    // Change the y axis velocity when colliding with objects which have the name of Bounce
-                    // The law of gravity still applies.
-                    if (hit.name == "Bounce")
-                    {
-                        velocity.y = bounceVelocity;
-                    }
-
                 }
                 if (hitList.Count == 0)
                 {

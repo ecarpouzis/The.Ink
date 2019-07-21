@@ -41,7 +41,7 @@ public class TimeController : MonoBehaviour
         keyframes = new ArrayList();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (GameController.G.isPlaying)
         {

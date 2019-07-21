@@ -1,0 +1,103 @@
+{
+"skeleton": {
+	"hash": "gvDUdImiy9AJSqyHzSEK5c5Y6kg",
+	"spine": "3.8.49-beta",
+	"x": -377.23,
+	"y": -15.09,
+	"width": 632,
+	"height": 1150.5,
+	"images": "Y:/Network Share/InkGame/InkGame/images/",
+	"audio": "Y:/Network Share/InkGame/InkGame"
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Throne", "bone": "root", "attachment": "Throne" },
+	{ "name": "Body", "bone": "root", "attachment": "Body" },
+	{ "name": "FarArm", "bone": "root", "attachment": "FarArm" },
+	{ "name": "FarLeg", "bone": "root", "attachment": "FarLeg" },
+	{ "name": "Cane", "bone": "root", "attachment": "Cane" },
+	{ "name": "CloseArm", "bone": "root", "attachment": "CloseArm" },
+	{ "name": "CloseLeg", "bone": "root", "attachment": "CloseLeg" },
+	{ "name": "Head", "bone": "root", "attachment": "Head" },
+	{ "name": "Eyes", "bone": "root", "attachment": "Eyes" },
+	{ "name": "Crystal1", "bone": "root", "attachment": "Crystal1" },
+	{ "name": "Crystal2", "bone": "root", "attachment": "Crystal2" },
+	{ "name": "Crystal3", "bone": "root", "attachment": "Crystal3" },
+	{ "name": "Crystal4", "bone": "root", "attachment": "Crystal4" },
+	{ "name": "Crystal5", "bone": "root", "attachment": "Crystal5" },
+	{ "name": "Crystal6", "bone": "root", "attachment": "Crystal6" },
+	{ "name": "Crystal7", "bone": "root", "attachment": "Crystal7" },
+	{ "name": "Crystal8", "bone": "root", "attachment": "Crystal8" },
+	{ "name": "Crystal9", "bone": "root", "attachment": "Crystal9" },
+	{ "name": "Crystal10", "bone": "root", "attachment": "Crystal10" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Head": {
+				"Head": { "x": 21.02, "y": 509.41, "width": 207, "height": 227 }
+			},
+			"Body": {
+				"Body": { "x": -7.23, "y": 381.41, "width": 137, "height": 238 }
+			},
+			"Throne": {
+				"Throne": { "x": -5.48, "y": 437.91, "width": 394, "height": 906 }
+			},
+			"Crystal10": {
+				"Crystal10": { "x": -180.23, "y": 835.16, "width": 88, "height": 133 }
+			},
+			"Eyes": {
+				"Eyes": { "x": 9.02, "y": 565.66, "width": 96, "height": 47 }
+			},
+			"CloseLeg": {
+				"CloseLeg": { "x": 63.52, "y": 188.16, "width": 115, "height": 207 }
+			},
+			"FarLeg": {
+				"FarLeg": { "x": 94.27, "y": 190.41, "width": 115, "height": 219 }
+			},
+			"Crystal1": {
+				"Crystal1": { "x": -279.23, "y": 300.91, "width": 196, "height": 572 }
+			},
+			"Crystal2": {
+				"Crystal2": { "x": 36.27, "y": 857.91, "width": 437, "height": 555 }
+			},
+			"Crystal3": {
+				"Crystal3": { "x": -257.73, "y": 558.41, "width": 131, "height": 127 }
+			},
+			"Crystal4": {
+				"Crystal4": { "x": -112.98, "y": 835.16, "width": 152, "height": 163 }
+			},
+			"Crystal5": {
+				"Crystal5": { "x": -266.48, "y": 746.66, "width": 82, "height": 64 }
+			},
+			"Crystal6": {
+				"Crystal6": { "x": -186.98, "y": 690.91, "width": 160, "height": 170 }
+			},
+			"Crystal7": {
+				"Crystal7": { "x": -235.48, "y": 637.66, "width": 69, "height": 68 }
+			},
+			"Crystal8": {
+				"Crystal8": { "x": -222.98, "y": 709.91, "width": 64, "height": 88 }
+			},
+			"Crystal9": {
+				"Crystal9": { "x": -199.48, "y": 771.41, "width": 33, "height": 34 }
+			},
+			"CloseArm": {
+				"CloseArm": { "x": 14.52, "y": 421.41, "width": 251, "height": 213 }
+			},
+			"FarArm": {
+				"FarArm": { "x": 65.77, "y": 364.91, "width": 136, "height": 43 }
+			},
+			"Cane": {
+				"Cane": { "x": 103.02, "y": 224.41, "width": 77, "height": 269 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}
