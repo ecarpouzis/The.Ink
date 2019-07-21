@@ -41,7 +41,7 @@ public class TimeController : MonoBehaviour
         keyframes = new ArrayList();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameController.G.isPlaying)
         {
@@ -60,9 +60,6 @@ public class TimeController : MonoBehaviour
                         keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
                     }
                 }
-            }
-            else if (keyframes.Count == 1 && GameController.G.isRewinding)
-            {
             }
             else
             {
