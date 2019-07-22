@@ -11547,7 +11547,7 @@ MonoBehaviour:
   startPosition: {x: 50.01, y: 130, z: -5}
   endPosition: {x: -60.3, y: 130, z: -5}
   delay: 30.8
-  speed: 0.75
+  speed: 0.5
   offsetTime: 0
   order: 0
 --- !u!61 &2096861242
