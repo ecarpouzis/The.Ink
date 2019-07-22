@@ -16,7 +16,7 @@ public class PositionKeyframe
 
 public class TimeController : MonoBehaviour
 {
-    public CharacterController2D player;
+    CharacterController2D player;
     public ArrayList keyframes;
 
     public int keyframe = 5;

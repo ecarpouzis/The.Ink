@@ -1,0 +1,13 @@
+
+SimpleDrip1.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Drip1
+  rotate: false
+  xy: 2, 2
+  size: 75, 175
+  orig: 75, 175
+  offset: 0, 0
+  index: -1
