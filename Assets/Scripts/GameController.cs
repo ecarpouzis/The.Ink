@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         timeSinceRewind += Time.deltaTime;
         timeSinceStart += Time.deltaTime;
         if (timeSinceStart > timeToStart && !isPlaying)

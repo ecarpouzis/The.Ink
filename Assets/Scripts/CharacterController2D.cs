@@ -46,9 +46,15 @@ public class CharacterController2D : MonoBehaviour
         if (isDead != true)
         {
             isDead = true;
+
             skeletonAnimation.gameObject.SetActive(false);
             DeathObject.SetActive(true);
             var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
+
+            Vector3 newScale = transform.localScale;
+            newScale.x = 1;
+            transform.localScale = newScale;
+
             var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
             deathAnim.TrackTime = 0;
             rb.bodyType = RigidbodyType2D.Static;
