@@ -62,26 +62,38 @@ public class MovingObject : MonoBehaviour
     {
         float adjustedTime = GameController.G.currentTimePoint + offsetTime;
 
-        prevLoopPoint = curLoopPoint;
         curLoopPoint = Mathf.PingPong(adjustedTime * speed, 1);
 
+        Vector2 oldPos = transform.position;
+        Vector2 newPos = Vector2.Lerp(startPosition, endPosition, curLoopPoint);
 
         if (loopMovement)
         {
-            if (flipOnLoop)
+            Vector2 curScale = transform.localScale;
+            if (GameController.G.isRewinding)
             {
-                Vector2 curDir = transform.localScale;
-                if (prevLoopPoint > curLoopPoint)
+                if (oldPos.x > newPos.x)
                 {
-                    curDir.x = -1;
+                    curScale.x = -1;
                 }
                 else
                 {
-                    curDir.x = 1;
+                    curScale.x = 1;
                 }
-                transform.localScale = curDir;
             }
-            transform.position = Vector2.Lerp(startPosition, endPosition, curLoopPoint);
+            else
+            {
+                if (oldPos.x > newPos.x)
+                {
+                    curScale.x = 1;
+                }
+                else
+                {
+                    curScale.x = -1;
+                }
+            }
+            transform.localScale = curScale;
+            transform.position = newPos;
         }
         else
         {

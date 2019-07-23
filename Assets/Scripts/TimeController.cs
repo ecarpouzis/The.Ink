@@ -85,7 +85,7 @@ public class TimeController : MonoBehaviour
             currentVelocity = (keyframes[lastIndex] as PositionKeyframe).velocity;
             currentScale = (keyframes[lastIndex] as PositionKeyframe).localScale;
             currentAnimation = (keyframes[lastIndex] as PositionKeyframe).animation;
-            Debug.Log("Played Frame Time " + (keyframes[lastIndex] as PositionKeyframe).frameTime + " at time " + GameController.G.currentTimePoint);
+            //Debug.Log("Played Frame Time " + (keyframes[lastIndex] as PositionKeyframe).frameTime + " at time " + GameController.G.currentTimePoint);
             keyframes.RemoveAt(lastIndex);
         }
     }

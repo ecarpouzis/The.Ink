@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Spine.Unity;
 using System.Collections.Generic;
+using Spine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
@@ -57,9 +58,11 @@ public class CharacterController2D : MonoBehaviour
 
             var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
             deathAnim.TrackTime = 0;
+            GameController.G.Pause();
             rb.bodyType = RigidbodyType2D.Static;
         }
     }
+    
 
     public void Revive()
     {
@@ -246,7 +249,7 @@ public class CharacterController2D : MonoBehaviour
                     {
                         if (!GameController.G.isRewinding)
                         {
-                            transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+                            //transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
                         }
                         AngleCollideCheck(hit);
                         SpecialHitTypeCheck(hit);

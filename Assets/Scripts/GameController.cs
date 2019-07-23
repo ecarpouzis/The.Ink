@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
     public bool isRewinding = false;
     bool prevRewindState = false;
     public bool isPlaying = false;
-
     float timePlaying = 0f;
     float timeRewinding = 0f;
     public float currentTimePoint = 0f;
@@ -23,11 +22,18 @@ public class GameController : MonoBehaviour
 
     public float timeSinceRewind = 0f;
     float minTimeBetweenRewinds = .25f;
+    bool isPaused = false;
 
     private void Awake()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
         G = this;
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+        isPlaying = false;
     }
 
     // Update is called once per frame
@@ -37,11 +43,14 @@ public class GameController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         timeSinceRewind += Time.deltaTime;
         timeSinceStart += Time.deltaTime;
-        if (timeSinceStart > timeToStart && !isPlaying)
+
+
+        if (timeSinceStart > timeToStart && !isPlaying && !isPaused)
         {
             StartPlaying();
         }
-        if (isPlaying)
+
+        if (isPlaying && !isPaused)
         {
             if (isRewinding)
             {
@@ -57,41 +66,45 @@ public class GameController : MonoBehaviour
             percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
 
             TimeLeft.text = GetSecondsLeftAsString();
+        }
 
-            if (GameController.G.currentTimePoint > 0)
+        RewindButtonCheck();
+        if (isRewinding && !prevRewindState)
+        {
+            OnRewindStart();
+        }
+        else if (!isRewinding && prevRewindState)
+        {
+            OnRewindStop();
+        }
+
+        prevRewindState = isRewinding;
+    }
+
+    void RewindButtonCheck()
+    {
+        if (GameController.G.currentTimePoint > 0)
+        {
+            if (Input.GetButton("Rewind") && timeSinceRewind > minTimeBetweenRewinds)
             {
-                if (Input.GetButton("Rewind") && timeSinceRewind > minTimeBetweenRewinds)
-                {
-                    isRewinding = true;
-                }
-                if (Input.GetButtonUp("Rewind"))
-                {
-                    timeSinceRewind = 0;
-                    isRewinding = false;
-                }
+                isRewinding = true;
             }
-            else
+            if (Input.GetButtonUp("Rewind"))
             {
                 timeSinceRewind = 0;
                 isRewinding = false;
             }
-
-             if (isRewinding && !prevRewindState)
-            {
-                OnRewindStart();
-            }
-             else if(!isRewinding && prevRewindState)
-            {
-                OnRewindStop();
-            }
-
-            prevRewindState = isRewinding;
-
+        }
+        else
+        {
+            timeSinceRewind = 0;
+            isRewinding = false;
         }
     }
 
     void OnRewindStart()
     {
+        isPaused = false;
         MusicController.m.StartRewoundMusic();
     }
 
