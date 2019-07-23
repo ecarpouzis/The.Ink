@@ -36,8 +36,8 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     public bool grounded;
     public bool isDead = false;
-    public SkeletonAnimation skeletonAnimation;
     public GameObject DeathObject;
+    public SkeletonAnimation skeletonAnimation;
     Rigidbody2D rb;
     float timeSinceDeath;
 
@@ -71,6 +71,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        skeletonAnimation = GameObject.Find("CharacterAnimation").GetComponent<SkeletonAnimation>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         self = this;

@@ -1,33 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 public class PositionKeyframe
 {
+
     public Vector2 position;
     public Vector2 velocity;
+    public float frameTime;
+    public Vector2 localScale;
+    public string animation;
 
-    public PositionKeyframe(Vector2 position, Vector2 velocity)
+    public PositionKeyframe(Vector2 position, Vector2 velocity, Vector2 localScale, string animation, float frameTime)
     {
         this.position = position;
         this.velocity = velocity;
+        this.frameTime = frameTime;
+        this.localScale = localScale;
+        this.animation = animation;
     }
+
 }
 
 public class TimeController : MonoBehaviour
+
 {
+
     CharacterController2D player;
+
     public ArrayList keyframes;
-
-    public int keyframe = 5;
-    private int frameCounter = 0;
-    private int reverseCounter = 0;
-
+    
     private Vector2 currentPosition;
-    private Vector2 previousPosition;
     private Vector2 currentVelocity;
-    private Vector2 previousVelocity;
-
+    private Vector2 currentScale;
+    private string currentAnimation;
 
     public bool firstRun = true;
 
@@ -41,46 +47,24 @@ public class TimeController : MonoBehaviour
         keyframes = new ArrayList();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (GameController.G.isPlaying)
         {
             if (!GameController.G.isRewinding)
             {
-                firstRun = true;
-                
-                    if (frameCounter < keyframe)
-                    {
-                        frameCounter += 1;
-                    }
-                    else
-                    {
-                        frameCounter = 0;
-                        keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity));
-                    }
-                
+                keyframes.Add(new PositionKeyframe(player.transform.position, player.velocity, player.transform.localScale, player.skeletonAnimation.AnimationName, GameController.G.currentTimePoint));
             }
             else
             {
-                if (reverseCounter > 0)
+                RestorePositions();
+                player.transform.position = currentPosition;
+                player.velocity = currentVelocity;
+                player.transform.localScale = currentScale;
+                if(player.skeletonAnimation.AnimationName != currentAnimation)
                 {
-                    reverseCounter -= 1;
+                    player.skeletonAnimation.AnimationName = currentAnimation;
                 }
-                else
-                {
-                    reverseCounter = keyframe;
-                    RestorePositions();
-                }
-
-                if (firstRun)
-                {
-                    firstRun = false;
-                    RestorePositions();
-                }
-
-                float interpolation = (float)reverseCounter / (float)keyframe;
-                player.transform.position = Vector2.Lerp(previousPosition, currentPosition, interpolation);
-                player.velocity = Vector2.Lerp(previousVelocity, currentVelocity, interpolation);
             }
         }
     }
@@ -89,16 +73,21 @@ public class TimeController : MonoBehaviour
     {
         int lastIndex = keyframes.Count - 1;
         int secondToLastIndex = keyframes.Count - 2;
-
+        float nextFrameTime = (keyframes[lastIndex] as PositionKeyframe).frameTime;
         if (secondToLastIndex >= 0)
         {
+            while((keyframes[lastIndex] as PositionKeyframe).frameTime > GameController.G.currentTimePoint)
+            {
+                keyframes.RemoveAt(lastIndex);
+                lastIndex = keyframes.Count - 1;
+            }
             currentPosition = (keyframes[lastIndex] as PositionKeyframe).position;
-            previousPosition = (keyframes[secondToLastIndex] as PositionKeyframe).position;
-
             currentVelocity = (keyframes[lastIndex] as PositionKeyframe).velocity;
-            previousVelocity = (keyframes[secondToLastIndex] as PositionKeyframe).velocity;
-
+            currentScale = (keyframes[lastIndex] as PositionKeyframe).localScale;
+            currentAnimation = (keyframes[lastIndex] as PositionKeyframe).animation;
+            Debug.Log("Played Frame Time " + (keyframes[lastIndex] as PositionKeyframe).frameTime + " at time " + GameController.G.currentTimePoint);
             keyframes.RemoveAt(lastIndex);
         }
     }
 }
+
