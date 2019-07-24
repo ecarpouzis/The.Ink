@@ -38,6 +38,7 @@ public class CharacterController2D : MonoBehaviour
     public bool grounded;
     public bool isDead = false;
     public GameObject DeathObject;
+    public GameObject DeathCanvas;
     public SkeletonAnimation skeletonAnimation;
     Rigidbody2D rb;
     float timeSinceDeath;
@@ -50,8 +51,10 @@ public class CharacterController2D : MonoBehaviour
 
             skeletonAnimation.gameObject.SetActive(false);
             DeathObject.SetActive(true);
+            DeathCanvas.SetActive(true);
             var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
-
+ 
+            
             Vector3 newScale = transform.localScale;
             newScale.x = 1;
             transform.localScale = newScale;
@@ -70,10 +73,12 @@ public class CharacterController2D : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         skeletonAnimation.gameObject.SetActive(true);
         DeathObject.SetActive(false);
+        DeathCanvas.SetActive(false);
     }
 
     private void Awake()
     {
+        DeathCanvas.SetActive(false);
         skeletonAnimation = GameObject.Find("CharacterAnimation").GetComponent<SkeletonAnimation>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -123,7 +128,6 @@ public class CharacterController2D : MonoBehaviour
 
     void Bounce(float bounceVelocity)
     {
-
         velocity.y = bounceVelocity;
         grounded = false;
     }
