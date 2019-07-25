@@ -37,6 +37,11 @@ public class TimeController : MonoBehaviour
 
     public bool firstRun = true;
 
+    public void Reset()
+    {
+        keyframes = new ArrayList();
+    }
+
     void Awake()
     {
         player = GetComponent<CharacterController2D>();

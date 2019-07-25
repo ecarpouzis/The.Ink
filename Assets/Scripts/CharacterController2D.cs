@@ -42,7 +42,7 @@ public class CharacterController2D : MonoBehaviour
     public GameObject PauseCanvas;
     public SkeletonAnimation skeletonAnimation;
     Rigidbody2D rb;
-    float timeSinceDeath;
+    public float timeSinceDeath;
 
     public void Die()
     {
@@ -71,6 +71,8 @@ public class CharacterController2D : MonoBehaviour
         isDead = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         skeletonAnimation.gameObject.SetActive(true);
+        GameController.G.isPlaying = true;
+        GameController.G.isDeathPaused = false;
         DeathObject.SetActive(false);
         DeathCanvas.SetActive(false);
     }

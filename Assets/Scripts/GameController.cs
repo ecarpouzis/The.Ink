@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    float timeToStart = 1f;
-    float timeSinceStart = 0f;
+    public float timeToStart = 1f;
+    public float timeSinceStart = 0f;
     int maxGameTime = 60;
     public CameraController CameraController;
     public CharacterController2D CharacterController;
@@ -14,15 +14,15 @@ public class GameController : MonoBehaviour
     public bool isRewinding = false;
     bool prevRewindState = false;
     public bool isPlaying = false;
-    float timePlaying = 0f;
-    float timeRewinding = 0f;
+    public float timePlaying = 0f;
+    public float timeRewinding = 0f;
     public float currentTimePoint = 0f;
     public UnityEngine.UI.Text TimeLeft;
     public float percThroughTime;
 
     public float timeSinceRewind = 0f;
     float minTimeBetweenRewinds = .25f;
-    bool isDeathPaused = false;
+    public bool isDeathPaused = false;
     public bool isPaused = false;
 
     private void Awake()
@@ -60,40 +60,41 @@ public class GameController : MonoBehaviour
         }
         if (!isPaused)
         {
-            if (isPlaying && !isDeathPaused)
-            {
-                if (isRewinding)
-                {
-                    timeRewinding += Time.deltaTime;
-                }
-                else
-                {
-                    timePlaying += Time.deltaTime;
-                }
-
-                //Total time elapsed since game start
-                currentTimePoint = timePlaying - timeRewinding;
-                percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
-
-                TimeLeft.text = GetSecondsLeftAsString();
-            }
-
-            RewindButtonCheck();
-            if (isRewinding && !prevRewindState)
-            {
-                OnRewindStart();
-            }
-            else if (!isRewinding && prevRewindState)
-            {
-                OnRewindStop();
-            }
-
-            prevRewindState = isRewinding;
-
-
             if (Input.GetButtonDown("Menu"))
             {
                 Pause();
+            }
+            else
+            {
+                if (isPlaying && !isDeathPaused)
+                {
+                    if (isRewinding)
+                    {
+                        timeRewinding += Time.deltaTime;
+                    }
+                    else
+                    {
+                        timePlaying += Time.deltaTime;
+                    }
+
+                    //Total time elapsed since game start
+                    currentTimePoint = timePlaying - timeRewinding;
+                    percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
+
+                    TimeLeft.text = GetSecondsLeftAsString();
+                }
+
+                RewindButtonCheck();
+                if (isRewinding && !prevRewindState)
+                {
+                    OnRewindStart();
+                }
+                else if (!isRewinding && prevRewindState)
+                {
+                    OnRewindStop();
+                }
+
+                prevRewindState = isRewinding;
             }
         }
         else

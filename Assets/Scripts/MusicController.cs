@@ -13,6 +13,13 @@ public class MusicController : MonoBehaviour
         m = this;
     }
 
+    public void PlayFromStart()
+    {
+        gameMusicReversed.Stop();
+        gameMusic.Stop();
+        gameMusic.Play(GameController.G.currentTimePoint);
+    }
+
     public void StartForwardMusic()
     {
         gameMusicReversed.Stop();
