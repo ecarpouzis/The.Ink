@@ -39,6 +39,7 @@ public class CharacterController2D : MonoBehaviour
     public bool isDead = false;
     public GameObject DeathObject;
     public GameObject DeathCanvas;
+    public GameObject PauseCanvas;
     public SkeletonAnimation skeletonAnimation;
     Rigidbody2D rb;
     float timeSinceDeath;
@@ -48,7 +49,6 @@ public class CharacterController2D : MonoBehaviour
         if (isDead != true)
         {
             isDead = true;
-
             skeletonAnimation.gameObject.SetActive(false);
             DeathObject.SetActive(true);
             DeathCanvas.SetActive(true);
@@ -61,11 +61,10 @@ public class CharacterController2D : MonoBehaviour
 
             var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
             deathAnim.TrackTime = 0;
-            GameController.G.Pause();
+            GameController.G.DeathPause();
             rb.bodyType = RigidbodyType2D.Static;
         }
     }
-    
 
     public void Revive()
     {
@@ -78,6 +77,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        PauseCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
         skeletonAnimation = GameObject.Find("CharacterAnimation").GetComponent<SkeletonAnimation>();
         rb = GetComponent<Rigidbody2D>();
@@ -134,7 +134,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        if (GameController.G.isPlaying)
+        if (GameController.G.isPlaying && !GameController.G.isPaused)
         {
             if (isDead && !GameController.G.isRewinding)
             {

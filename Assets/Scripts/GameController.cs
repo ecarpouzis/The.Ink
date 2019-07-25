@@ -22,7 +22,8 @@ public class GameController : MonoBehaviour
 
     public float timeSinceRewind = 0f;
     float minTimeBetweenRewinds = .25f;
-    bool isPaused = false;
+    bool isDeathPaused = false;
+    public bool isPaused = false;
 
     private void Awake()
     {
@@ -30,55 +31,85 @@ public class GameController : MonoBehaviour
         G = this;
     }
 
-    public void Pause()
+    public void DeathPause()
     {
-        isPaused = true;
+        isDeathPaused = true;
         isPlaying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (!isPaused)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         timeSinceRewind += Time.deltaTime;
         timeSinceStart += Time.deltaTime;
 
 
-        if (timeSinceStart > timeToStart && !isPlaying && !isPaused)
+        if (timeSinceStart > timeToStart && !isPlaying && !isDeathPaused)
         {
             StartPlaying();
         }
-
-        if (isPlaying && !isPaused)
+        if (!isPaused)
         {
-            if (isRewinding)
+            if (isPlaying && !isDeathPaused)
             {
-                timeRewinding += Time.deltaTime;
+                if (isRewinding)
+                {
+                    timeRewinding += Time.deltaTime;
+                }
+                else
+                {
+                    timePlaying += Time.deltaTime;
+                }
+
+                //Total time elapsed since game start
+                currentTimePoint = timePlaying - timeRewinding;
+                percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
+
+                TimeLeft.text = GetSecondsLeftAsString();
             }
-            else
+
+            RewindButtonCheck();
+            if (isRewinding && !prevRewindState)
             {
-                timePlaying += Time.deltaTime;
+                OnRewindStart();
+            }
+            else if (!isRewinding && prevRewindState)
+            {
+                OnRewindStop();
             }
 
-            //Total time elapsed since game start
-            currentTimePoint = timePlaying - timeRewinding;
-            percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
+            prevRewindState = isRewinding;
 
-            TimeLeft.text = GetSecondsLeftAsString();
+
+            if (Input.GetButtonDown("Menu"))
+            {
+                Pause();
+            }
         }
-
-        RewindButtonCheck();
-        if (isRewinding && !prevRewindState)
+        else
         {
-            OnRewindStart();
+            if (Input.GetButtonDown("Menu"))
+            {
+                Pause();
+            }
         }
-        else if (!isRewinding && prevRewindState)
-        {
-            OnRewindStop();
-        }
+    }
 
-        prevRewindState = isRewinding;
+    public GameObject pauseMenu;
+    public void Pause()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
     }
 
     void RewindButtonCheck()
@@ -104,7 +135,7 @@ public class GameController : MonoBehaviour
 
     void OnRewindStart()
     {
-        isPaused = false;
+        isDeathPaused = false;
         MusicController.m.StartRewoundMusic();
     }
 
