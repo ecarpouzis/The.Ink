@@ -1,0 +1,48 @@
+
+SpiralWalker.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+CurvedTongue
+  rotate: false
+  xy: 2893, 1783
+  size: 106, 229
+  orig: 106, 229
+  offset: 0, 0
+  index: -1
+Eyemask
+  rotate: false
+  xy: 2360, 1592
+  size: 531, 420
+  orig: 533, 422
+  offset: 1, 1
+  index: -1
+ForkedTongue
+  rotate: false
+  xy: 2360, 1284
+  size: 76, 306
+  orig: 113, 306
+  offset: 2, 0
+  index: -1
+Layer 1
+  rotate: false
+  xy: 2, 1000
+  size: 2356, 1012
+  orig: 2358, 1014
+  offset: 1, 1
+  index: -1
+Layer 11
+  rotate: false
+  xy: 2, 2
+  size: 2326, 996
+  orig: 2328, 998
+  offset: 1, 1
+  index: -1
+Pupil
+  rotate: false
+  xy: 2438, 1438
+  size: 152, 152
+  orig: 152, 152
+  offset: 0, 0
+  index: -1

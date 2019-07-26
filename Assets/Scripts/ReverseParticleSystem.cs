@@ -7,7 +7,7 @@ public class ReverseParticleSystem : MonoBehaviour
 
     ParticleSystem particleSystem;
 
-    float simulationTime;
+    float simulationTime = 0;
 
     public float startTime = 0f;
     public float simulationSpeedScale = 1.0f;
@@ -25,8 +25,9 @@ public class ReverseParticleSystem : MonoBehaviour
         }
         //startTime = GameController.G.currentTimePoint;
         //for (int i = 0; i < simulationTimes.Length; i++) { simulationTimes[i] = 0.0f; }
-
-        particleSystem.Simulate(GameController.G.currentTimePoint, true, false, true);
+        startTime = GameController.G.currentTimePoint;
+        simulationTime = startTime;
+        particleSystem.Simulate(startTime, true, false, true);
     }
 
     private void OnDisable()
@@ -44,11 +45,11 @@ public class ReverseParticleSystem : MonoBehaviour
 
         particleSystem.Play(false);
 
-        //float deltaTime = particleSystem.main.useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-        //simulationTime -= (deltaTime * particleSystem.main.simulationSpeed) * simulationSpeedScale;
-
+        float deltaTime = particleSystem.main.useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+        simulationTime -= (deltaTime * particleSystem.main.simulationSpeed) * simulationSpeedScale;
+        float curSimTime = startTime + simulationTime;
         //float currentSimulationTime = startTime + simulationTimes[i];
-        particleSystem.Simulate(GameController.G.currentTimePoint, true, false, true);
+        particleSystem.Simulate(curSimTime, true, false, true);
         particleSystem.useAutoRandomSeed = useAutoRandomSeed;
 
         //if (currentSimulationTime < 0.0f)

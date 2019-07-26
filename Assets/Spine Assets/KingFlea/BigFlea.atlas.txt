@@ -1,0 +1,167 @@
+
+BigFlea.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 538, 930
+  size: 400, 702
+  orig: 400, 702
+  offset: 0, 0
+  index: -1
+Cane
+  rotate: true
+  xy: 1038, 1679
+  size: 225, 802
+  orig: 225, 802
+  offset: 0, 0
+  index: -1
+CloseArm
+  rotate: false
+  xy: 2346, 3444
+  size: 745, 634
+  orig: 745, 634
+  offset: 0, 0
+  index: -1
+CloseLeg
+  rotate: true
+  xy: 2346, 2435
+  size: 337, 619
+  orig: 337, 619
+  offset: 0, 0
+  index: -1
+Crystal1
+  rotate: false
+  xy: 2, 2
+  size: 534, 1630
+  orig: 534, 1630
+  offset: 0, 0
+  index: -1
+Crystal10
+  rotate: true
+  xy: 3169, 2938
+  size: 248, 395
+  orig: 248, 395
+  offset: 0, 0
+  index: -1
+Crystal2
+  rotate: false
+  xy: 1038, 2423
+  size: 1306, 1655
+  orig: 1306, 1655
+  offset: 0, 0
+  index: -1
+Crystal3
+  rotate: false
+  xy: 3169, 3188
+  size: 383, 376
+  orig: 383, 376
+  offset: 0, 0
+  index: -1
+Crystal4
+  rotate: false
+  xy: 3570, 3613
+  size: 425, 465
+  orig: 425, 465
+  offset: 0, 0
+  index: -1
+Crystal5
+  rotate: true
+  xy: 2967, 2551
+  size: 235, 177
+  orig: 235, 177
+  offset: 0, 0
+  index: -1
+Crystal6
+  rotate: false
+  xy: 3093, 3566
+  size: 475, 512
+  orig: 475, 512
+  offset: 0, 0
+  index: -1
+Crystal7
+  rotate: false
+  xy: 2955, 2788
+  size: 194, 191
+  orig: 194, 191
+  offset: 0, 0
+  index: -1
+Crystal8
+  rotate: false
+  xy: 2372, 2173
+  size: 191, 260
+  orig: 191, 260
+  offset: 0, 0
+  index: -1
+Crystal9
+  rotate: false
+  xy: 3997, 3980
+  size: 84, 98
+  orig: 84, 98
+  offset: 0, 0
+  index: -1
+Eyes
+  rotate: false
+  xy: 2565, 2294
+  size: 285, 139
+  orig: 285, 139
+  offset: 0, 0
+  index: -1
+FarArm
+  rotate: true
+  xy: 2246, 2021
+  size: 400, 124
+  orig: 400, 124
+  offset: 0, 0
+  index: -1
+FarLeg
+  rotate: false
+  xy: 538, 279
+  size: 333, 649
+  orig: 333, 649
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2346, 2774
+  size: 607, 668
+  orig: 607, 668
+  offset: 0, 0
+  index: -1
+Mushroom
+  rotate: true
+  xy: 1038, 1906
+  size: 515, 914
+  orig: 515, 914
+  offset: 0, 0
+  index: -1
+MushroomRoot
+  rotate: false
+  xy: 1954, 1741
+  size: 290, 680
+  orig: 290, 680
+  offset: 0, 0
+  index: -1
+MushroomTentacle1
+  rotate: false
+  xy: 2955, 2981
+  size: 212, 461
+  orig: 212, 461
+  offset: 0, 0
+  index: -1
+MushroomTentacle2
+  rotate: true
+  xy: 538, 60
+  size: 217, 441
+  orig: 217, 441
+  offset: 0, 0
+  index: -1
+Throne
+  rotate: false
+  xy: 2, 1634
+  size: 1034, 2444
+  orig: 1034, 2444
+  offset: 0, 0
+  index: -1
