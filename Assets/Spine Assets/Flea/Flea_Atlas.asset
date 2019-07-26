@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: KingFlea_Atlas
+  m_Name: Flea_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 85c7bc7655a90914f931f76fd6778e20, type: 3}
+  atlasFile: {fileID: 4900000, guid: 8323334402f44ee4cbd0ffaeca5aa75d, type: 3}
   materials:
-  - {fileID: 2100000, guid: 189beedee382b0a45b8521a6d618ac2e, type: 2}
+  - {fileID: 2100000, guid: db6d223f3c4f5b5408eddea2b80c5864, type: 2}

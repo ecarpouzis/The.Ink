@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: KingFlea_SkeletonData
+  m_Name: Flea_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: f15c33e873d63334cbfe76b6fe9fcb49, type: 2}
+  - {fileID: 11400000, guid: b65eaaebb70bd134d8c49ae39d8b4af4, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: d6d0c9dca0cfe444f86a5f6ef74ce364, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 7cceeeb85dbfaf146b108bd29a6a3273, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

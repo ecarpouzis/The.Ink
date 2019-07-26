@@ -6,205 +6,205 @@ filter: Linear,Linear
 repeat: none
 Arm1_1
   rotate: true
-  xy: 135, 33
-  size: 55, 127
+  xy: 572, 30
+  size: 53, 125
   orig: 55, 127
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm1_2
-  rotate: false
-  xy: 1762, 52
-  size: 94, 141
+  rotate: true
+  xy: 429, 17
+  size: 66, 141
   orig: 94, 141
-  offset: 0, 0
+  offset: 28, 0
   index: -1
 Arm2_1
-  rotate: true
-  xy: 1353, 48
-  size: 123, 224
+  rotate: false
+  xy: 1950, 279
+  size: 96, 200
   orig: 123, 224
-  offset: 0, 0
+  offset: 27, 24
   index: -1
 Arm2_2
   rotate: true
-  xy: 2, 3
-  size: 85, 131
+  xy: 1294, 23
+  size: 83, 129
   orig: 85, 131
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm3_1
   rotate: true
-  xy: 899, 319
-  size: 119, 340
+  xy: 1525, 97
+  size: 119, 211
   orig: 119, 340
-  offset: 0, 0
+  offset: 0, 129
   index: -1
 Arm3_2
   rotate: false
-  xy: 1607, 421
-  size: 91, 170
+  xy: 1434, 136
+  size: 89, 168
   orig: 91, 170
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm3_3
   rotate: true
-  xy: 1700, 438
-  size: 67, 149
+  xy: 173, 25
+  size: 65, 147
   orig: 67, 149
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm4_1
   rotate: true
-  xy: 1734, 195
-  size: 97, 143
+  xy: 1151, 11
+  size: 95, 141
   orig: 97, 143
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm4_2
   rotate: true
-  xy: 899, 440
+  xy: 1179, 306
   size: 151, 365
   orig: 151, 365
   offset: 0, 0
   index: -1
 Arm5_1
   rotate: true
-  xy: 1700, 507
-  size: 112, 205
+  xy: 1738, 85
+  size: 112, 204
   orig: 112, 205
-  offset: 0, 0
+  offset: 0, 1
   index: -1
 Arm5_2
-  rotate: true
-  xy: 1907, 512
-  size: 107, 83
+  rotate: false
+  xy: 322, 2
+  size: 105, 81
   orig: 107, 83
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm6_1
-  rotate: true
-  xy: 449, 5
-  size: 78, 84
+  rotate: false
+  xy: 1944, 127
+  size: 76, 82
   orig: 78, 84
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Arm6_2
-  rotate: false
-  xy: 746, 101
+  rotate: true
+  xy: 1725, 481
   size: 138, 292
   orig: 138, 292
   offset: 0, 0
   index: -1
 BackTubes
   rotate: false
-  xy: 1687, 621
-  size: 304, 401
+  xy: 1725, 621
+  size: 281, 401
   orig: 304, 401
   offset: 0, 0
   index: -1
 BackTubes2
   rotate: false
-  xy: 420, 85
+  xy: 418, 85
   size: 324, 308
   orig: 324, 308
   offset: 0, 0
   index: -1
 Body
   rotate: true
-  xy: 2, 90
-  size: 303, 416
+  xy: 2, 92
+  size: 301, 414
   orig: 303, 416
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Crown
   rotate: false
-  xy: 1353, 173
-  size: 223, 241
+  xy: 1546, 218
+  size: 221, 239
   orig: 223, 241
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Crown Orb
-  rotate: false
-  xy: 535, 13
-  size: 69, 70
+  rotate: true
+  xy: 1434, 67
+  size: 67, 68
   orig: 69, 70
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 CrownDecoration1
-  rotate: false
-  xy: 1993, 804
-  size: 43, 45
+  rotate: true
+  xy: 699, 42
+  size: 41, 43
   orig: 43, 45
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 CrownDecoration2
-  rotate: false
-  xy: 375, 2
-  size: 72, 81
+  rotate: true
+  xy: 1944, 55
+  size: 70, 79
   orig: 72, 81
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 CrownDecoration3
   rotate: false
-  xy: 264, 20
-  size: 109, 68
+  xy: 1911, 211
+  size: 107, 66
   orig: 109, 68
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 CrownDecoration4
-  rotate: true
-  xy: 1993, 851
-  size: 171, 51
+  rotate: false
+  xy: 2, 41
+  size: 169, 49
   orig: 171, 51
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 CrownDecoration5
   rotate: false
-  xy: 1579, 13
-  size: 181, 160
+  xy: 1769, 321
+  size: 179, 158
   orig: 181, 160
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Eyes
-  rotate: false
-  xy: 1734, 294
-  size: 122, 142
+  rotate: true
+  xy: 1769, 199
+  size: 120, 140
   orig: 122, 142
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Head
-  rotate: false
-  xy: 1153, 62
-  size: 198, 255
+  rotate: true
+  xy: 1179, 108
+  size: 196, 253
   orig: 198, 255
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Mouth
-  rotate: false
-  xy: 1578, 175
-  size: 154, 239
+  rotate: true
+  xy: 919, 38
+  size: 154, 230
   orig: 154, 239
   offset: 0, 0
   index: -1
 Thorax1
-  rotate: true
-  xy: 1266, 416
-  size: 175, 339
+  rotate: false
+  xy: 744, 56
+  size: 173, 337
   orig: 175, 339
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 Thorax2
-  rotate: true
-  xy: 886, 57
-  size: 260, 265
+  rotate: false
+  xy: 919, 194
+  size: 258, 263
   orig: 260, 265
-  offset: 0, 0
+  offset: 1, 1
   index: -1
 WingDeflated
   rotate: false
-  xy: 899, 593
-  size: 786, 429
-  orig: 786, 429
+  xy: 899, 459
+  size: 824, 563
+  orig: 824, 563
   offset: 0, 0
   index: -1
 WingInflated
