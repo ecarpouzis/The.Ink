@@ -134,9 +134,17 @@ public class CharacterController2D : MonoBehaviour
         grounded = false;
     }
 
+    bool prevPause = false;
+
     private void Update()
-    {
-        if (GameController.G.isPlaying && !GameController.G.isPaused)
+    {   if (GameController.G.isPaused)
+        {
+            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+        }
+        if (GameController.G.isPlaying && !GameController.G.isPaused && !prevPause)
         {
             if (isDead && !GameController.G.isRewinding)
             {
@@ -268,6 +276,7 @@ public class CharacterController2D : MonoBehaviour
 
             }
         }
+        prevPause = GameController.G.isPaused;
 
     }
 }
