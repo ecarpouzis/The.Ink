@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: bdc166cc405a95347a639abaea87b1d7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gummy
+  fontNames:
+  - Gummy
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7d6cff2b247c15e4a86bfc60d172ad7c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

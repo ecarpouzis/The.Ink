@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public float timeRewinding = 0f;
     public float currentTimePoint = 0f;
     public UnityEngine.UI.Text TimeLeft;
+    public UnityEngine.UI.Text WhiteTimeLeft;
     public float percThroughTime;
 
     public float timeSinceRewind = 0f;
@@ -82,6 +83,7 @@ public class GameController : MonoBehaviour
                     percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
 
                     TimeLeft.text = GetSecondsLeftAsString();
+                    WhiteTimeLeft.text = GetSecondsLeftAsString();
                 }
 
                 RewindButtonCheck();

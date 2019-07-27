@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 3ea663c64c53c534297f9b2e27400c59
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gummy Book
+  fontNames:
+  - Gummy Book
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 83425d976549c5b498ab83f0bb7bfd1e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
