@@ -1,0 +1,11 @@
+The compiled/built verison of the game handles the Menu pause differently than when running the game from the development platform. This is expected, somewhat, but not in every case.
+
+While play testing this morning I discovered the following bugs/issues:
+
+- Character is not colliding properly against ShortPlatform assests 100% of the time
+- The Controller does not use the same illumination effect as mouse over, which could be confusing to some players
+- The Controller illumination, in some instances, did not work at all
+ (when paused while dead and rewinding behaved differently than while paused but not rewinding)
+- Immediately after pause, the input for "Jump" is respected
+- Alternate Key for "Menu" should be set to Escape
+- DPad is not usable at all 
