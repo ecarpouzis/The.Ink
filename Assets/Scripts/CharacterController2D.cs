@@ -41,7 +41,7 @@ public class CharacterController2D : MonoBehaviour
     public GameObject DeathCanvas;
     public GameObject PauseCanvas;
     public SkeletonAnimation skeletonAnimation;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float timeSinceDeath;
 
     public void Die()

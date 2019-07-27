@@ -1,0 +1,35 @@
+{
+"skeleton": {
+	"hash": "ECNd4u5CMyiQyzxSKiXo1LvSywQ",
+	"spine": "3.8.52-beta",
+	"x": -1486,
+	"y": -1200.74,
+	"width": 2922,
+	"height": 2858.74,
+	"images": "Y:/Network Share/InkGame/images/Logo/",
+	"audio": "Y:/Network Share/InkGame/Logo/"
+},
+"bones": [
+	{ "name": "root", "x": 150, "y": 162 }
+],
+"slots": [
+	{ "name": "Layer 6", "bone": "root", "attachment": "Layer 6" },
+	{ "name": "Layer 7", "bone": "root", "attachment": "Layer 7" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Layer 6": {
+				"Layer 6": { "x": -175, "y": 425, "width": 2922, "height": 2142 }
+			},
+			"Layer 7": {
+				"Layer 7": { "x": 503.99, "y": -1017.24, "width": 961, "height": 691 }
+			}
+		}
+	}
+],
+"animations": {
+	"LogoAnimation": {}
+}
+}

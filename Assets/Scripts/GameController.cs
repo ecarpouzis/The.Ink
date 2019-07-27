@@ -112,6 +112,15 @@ public class GameController : MonoBehaviour
     public void Pause()
     {
         isPaused = !isPaused;
+        GameController.G.isRewinding = false;
+        if(CharacterController.rb.bodyType== RigidbodyType2D.Dynamic)
+        {
+            CharacterController.rb.bodyType = RigidbodyType2D.Static;
+        }
+        else
+        {
+            CharacterController.rb.bodyType = RigidbodyType2D.Dynamic;
+        }
         pauseMenu.SetActive(isPaused);
     }
 

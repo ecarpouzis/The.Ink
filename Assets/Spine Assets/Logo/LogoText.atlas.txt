@@ -1,0 +1,20 @@
+
+LogoText.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 6
+  rotate: false
+  xy: 2, 695
+  size: 2922, 2142
+  orig: 2922, 2142
+  offset: 0, 0
+  index: -1
+Layer 7
+  rotate: false
+  xy: 2, 2
+  size: 961, 691
+  orig: 961, 691
+  offset: 0, 0
+  index: -1

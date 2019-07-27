@@ -1,0 +1,13 @@
+
+LogoDrip.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 8
+  rotate: true
+  xy: 2, 2
+  size: 510, 1930
+  orig: 510, 1930
+  offset: 0, 0
+  index: -1
