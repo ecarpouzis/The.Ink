@@ -1,0 +1,48 @@
+
+Platform2.png
+size: 4096,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+FloorDrip4
+  rotate: false
+  xy: 2190, 301
+  size: 197, 197
+  orig: 197, 197
+  offset: 0, 0
+  index: -1
+FloorDrip6
+  rotate: true
+  xy: 704, 2
+  size: 264, 304
+  orig: 264, 304
+  offset: 0, 0
+  index: -1
+FloorDrip7
+  rotate: false
+  xy: 1010, 84
+  size: 298, 182
+  orig: 298, 182
+  offset: 0, 0
+  index: -1
+Layer 1
+  rotate: false
+  xy: 2, 398
+  size: 2186, 100
+  orig: 2186, 100
+  offset: 0, 0
+  index: -1
+Platform
+  rotate: false
+  xy: 704, 268
+  size: 592, 128
+  orig: 592, 128
+  offset: 0, 0
+  index: -1
+PlatformUseExample
+  rotate: false
+  xy: 2, 112
+  size: 700, 284
+  orig: 700, 284
+  offset: 0, 0
+  index: -1

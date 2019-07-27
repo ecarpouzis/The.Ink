@@ -1,5 +1,5 @@
 
-Platform.png
+Platform1.png
 size: 4096,512
 format: RGBA8888
 filter: Linear,Linear
