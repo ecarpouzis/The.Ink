@@ -150,7 +150,7 @@ public class NewCharacterController : SkeletonAnimator
 
     private float AdjustHorizontalVelocity(float inputVelocity)
     {
-        const float MaxVelocity = 14f;
+        const float MaxVelocity = 17f;
         const float Acceleration = MaxVelocity * 7;
 
         float desiredVelocity;
