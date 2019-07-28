@@ -1,104 +1,104 @@
 
-NoseDragon.png
+Nosedragon.png
 size: 4096,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Drip1
   rotate: false
-  xy: 2803, 206
-  size: 126, 289
+  xy: 2805, 202
+  size: 126, 291
   orig: 126, 291
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 Drip2
   rotate: true
   xy: 2, 2
-  size: 86, 222
+  size: 86, 224
   orig: 86, 224
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 Drip3
   rotate: false
-  xy: 3671, 867
-  size: 114, 143
+  xy: 3673, 865
+  size: 114, 145
   orig: 114, 145
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 Drip4
   rotate: true
-  xy: 3477, 518
-  size: 123, 154
+  xy: 3479, 516
+  size: 123, 156
   orig: 123, 156
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 Eyelash
   rotate: false
-  xy: 2532, 197
-  size: 269, 298
+  xy: 2534, 193
+  size: 269, 300
   orig: 269, 300
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 LowerJaw
   rotate: false
-  xy: 1499, 156
-  size: 1031, 854
+  xy: 1501, 154
+  size: 1031, 856
   orig: 1031, 856
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 MoosemanBody
   rotate: true
-  xy: 226, 23
-  size: 65, 117
-  orig: 65, 119
-  offset: 0, 1
+  xy: 1501, 98
+  size: 54, 70
+  orig: 54, 70
+  offset: 0, 0
   index: -1
-MoosemanLegs
+MoosemanHead
   rotate: false
-  xy: 1499, 90
-  size: 45, 64
-  orig: 45, 66
-  offset: 0, 1
+  xy: 228, 25
+  size: 65, 63
+  orig: 65, 63
+  offset: 0, 0
+  index: -1
+MoosemanLLeg
+  rotate: false
+  xy: 3637, 577
+  size: 21, 62
+  orig: 21, 62
+  offset: 0, 0
+  index: -1
+MoosemanRLeg
+  rotate: true
+  xy: 2534, 169
+  size: 22, 62
+  orig: 22, 62
+  offset: 0, 0
   index: -1
 Nose
   rotate: true
   xy: 2, 90
-  size: 920, 1495
+  size: 920, 1497
   orig: 920, 1497
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 NoseTendrils
   rotate: false
-  xy: 3477, 643
-  size: 192, 367
+  xy: 3479, 641
+  size: 192, 369
   orig: 192, 369
-  offset: 0, 1
-  index: -1
-Nosebubble
-  rotate: false
-  xy: 2532, 174
-  size: 26, 21
-  orig: 26, 23
-  offset: 0, 1
-  index: -1
-Nosebubble2
-  rotate: false
-  xy: 3671, 794
-  size: 78, 71
-  orig: 78, 73
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 Pupil
   rotate: false
-  xy: 2931, 402
-  size: 95, 93
+  xy: 2933, 398
+  size: 95, 95
   orig: 95, 95
-  offset: 0, 1
+  offset: 0, 0
   index: -1
 UpperJaw
   rotate: false
-  xy: 2532, 497
-  size: 943, 513
+  xy: 2534, 495
+  size: 943, 515
   orig: 943, 515
-  offset: 0, 1
+  offset: 0, 0
   index: -1
