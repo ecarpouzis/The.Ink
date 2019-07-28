@@ -21,11 +21,13 @@ public class MovingObject : MonoBehaviour
     bool isFirstMovementScript = true;
     float nextDelay = 999;
     public int order;
+    Rigidbody2D _rigidbody;
 
     private void Awake()
     {
         myRender = GetComponent<Renderer>();
         myCollider = GetComponent<Collider2D>();
+        _rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
 
     private void Start()
@@ -58,13 +60,13 @@ public class MovingObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        float adjustedTime = GameController.G.currentTimePoint + offsetTime;
+        float adjustedTime = GameController.G.fixedTimePoint + offsetTime;
 
         curLoopPoint = Mathf.PingPong(adjustedTime * speed, 1);
 
-        Vector2 oldPos = transform.position;
+        Vector2 oldPos = _rigidbody.position;
         Vector2 newPos = Vector2.Lerp(startPosition, endPosition, curLoopPoint);
 
         if (loopMovement)
@@ -93,18 +95,18 @@ public class MovingObject : MonoBehaviour
                 }
             }
             transform.localScale = curScale;
-            transform.position = newPos;
+            _rigidbody.MovePosition(newPos);
         }
         else
         {
             if (delay == 0)
             {
-                transform.position = Vector2.Lerp(startPosition, endPosition, adjustedTime * speed);
+                _rigidbody.MovePosition(Vector2.Lerp(startPosition, endPosition, adjustedTime * speed));
             }
             //If I have a delay:
             else
             {
-                if (GameController.G.currentTimePoint - delay > 0 && GameController.G.currentTimePoint < nextDelay)
+                if (GameController.G.fixedTimePoint - delay > 0 && GameController.G.fixedTimePoint < nextDelay)
                 {
                     myRender.enabled = true;
 
@@ -136,13 +138,13 @@ public class MovingObject : MonoBehaviour
                     }
                     else
                     {
-                        transform.position = Vector3.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed);
+                        _rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, (adjustedTime - delay) * speed));
                     }
                 }
                 else
                 {
                     //It is before my delay, and I am the first movement script to trigger.
-                    if (isFirstMovementScript && GameController.G.currentTimePoint - delay < 0)
+                    if (isFirstMovementScript && GameController.G.fixedTimePoint - delay < 0)
                     {
                         HideMe();
 

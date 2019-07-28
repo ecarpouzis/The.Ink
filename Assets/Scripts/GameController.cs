@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
     {
         if (isPlaying && !isDeathPaused)
         {
-            if (isRewinding)
+            if (!isRewinding)
             {
                 fixedTime += Time.fixedDeltaTime;
             }

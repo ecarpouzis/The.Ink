@@ -47,6 +47,7 @@ public class ReverseParticleSystem : MonoBehaviour
 
         float deltaTime = particleSystem.main.useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
         simulationTime -= (deltaTime * particleSystem.main.simulationSpeed) * simulationSpeedScale;
+
         float curSimTime = startTime + simulationTime;
         //float currentSimulationTime = startTime + simulationTimes[i];
         particleSystem.Simulate(curSimTime, true, false, true);
