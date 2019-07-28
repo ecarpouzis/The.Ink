@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NewCharacterController : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class NewCharacterController : MonoBehaviour
 
     private BoxCollider2D _boxCollider;
     private Rigidbody2D _rigidbody;
+    private SkeletonAnimator _skeletonAnimator;
 
     private HorizInputs _currentHorizInput = HorizInputs.None;
 
@@ -19,6 +19,7 @@ public class NewCharacterController : MonoBehaviour
     {
         _boxCollider = GetComponent<BoxCollider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _skeletonAnimator = GetComponent<SkeletonAnimator>();
     }
 
     private void Update()
@@ -50,6 +51,7 @@ public class NewCharacterController : MonoBehaviour
         }
 
         HorizontalFlipGraphics();
+        SwitchAnimations();
     }
 
     private void HorizontalFlipGraphics()
@@ -65,6 +67,30 @@ public class NewCharacterController : MonoBehaviour
             Vector3 newScale = transform.localScale;
             newScale.x = -1;
             transform.localScale = newScale;
+        }
+    }
+    private void SwitchAnimations()
+    {
+        var skeletonAnimation = _skeletonAnimator.skeletonAnimation;
+        bool isGrounded = IsGrounded();
+
+        if (!isGrounded)
+        {
+            if (skeletonAnimation.AnimationName != "Jump")
+            {
+                skeletonAnimation.AnimationState.SetAnimation(0, "Jump", true);
+            }
+        }
+        else if (_rigidbody.velocity.x == 0)
+        {
+            if (skeletonAnimation.AnimationName != "Idle")
+            {
+                skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+            }
+        }
+        else if (skeletonAnimation.AnimationName != "Run2")
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, "Run2", true);
         }
     }
 
