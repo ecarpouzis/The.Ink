@@ -3,26 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FleaAnimator : MonoBehaviour
+public class FleaAnimator : SkeletonAnimator
 {
     public ReverseParticleSystem fleaBubblesRewind;
 
     void Start()
     {
-
-        var skeletonAnimation = GetComponent<SkeletonAnimation>();
-
         var Crystals = skeletonAnimation.AnimationState.SetAnimation(0, "Crystals", true);
         var Head = skeletonAnimation.AnimationState.SetAnimation(1, "FleaHead", true);
         var Body = skeletonAnimation.AnimationState.SetAnimation(2, "FleaBody", true);
         var MushroomTentacles = skeletonAnimation.AnimationState.SetAnimation(3, "MushroomTentacles", true);
         var MushroomPuff = skeletonAnimation.AnimationState.SetAnimation(4, "MushroomPuff", true);
-        Head.TrackTime = Random.Range(0, Head.animationEnd);
-        Crystals.TrackTime = Random.Range(0, Crystals.animationEnd);
-        Body.TrackTime = Random.Range(0, Body.animationEnd);
+
+        base.offsetTimes.Add("FleaHead", Random.Range(0, Head.animationEnd));
+        base.offsetTimes.Add("Crystals", Random.Range(0, Crystals.animationEnd));
+        base.offsetTimes.Add("FleaBody", Random.Range(0, Body.animationEnd));
     }
 
-    void Update()
+    new void Update()
     {
         if (GameController.G.isRewinding)
         {
@@ -38,5 +36,6 @@ public class FleaAnimator : MonoBehaviour
                 fleaBubblesRewind.enabled = false;
             }
         }
+        base.Update();
     }
 }

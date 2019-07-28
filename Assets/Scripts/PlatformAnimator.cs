@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-public class PlatformAnimator : MonoBehaviour
+public class PlatformAnimator : SkeletonAnimator
 {
     // Sample written for for Spine 3.7
     void Start()
     {
-        var skeletonAnimation = GetComponent<SkeletonAnimation>();
 
         var waves = skeletonAnimation.AnimationState.SetAnimation(0, "Wave", true);
         var bubbles = skeletonAnimation.AnimationState.SetAnimation(1, "Bubbles", true);
@@ -20,8 +19,10 @@ public class PlatformAnimator : MonoBehaviour
         {
             bubbles.TimeScale = 6;
         }
-        bubbles.TrackTime = Random.Range(0,bubbles.animationEnd);
+        
         waves.TimeScale = .5f;
-        waves.TrackTime = Random.Range(0, bubbles.animationEnd);
+
+        base.offsetTimes.Add("Bubbles", Random.Range(0, bubbles.animationEnd));
+        base.offsetTimes.Add("Wave", Random.Range(0, waves.animationEnd));
     }
 }

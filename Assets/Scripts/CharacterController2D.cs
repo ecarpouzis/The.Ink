@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Spine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : SkeletonAnimator
 {
     [SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     float speed = 9;
@@ -40,7 +40,6 @@ public class CharacterController2D : MonoBehaviour
     public GameObject DeathObject;
     public GameObject DeathCanvas;
     public GameObject PauseCanvas;
-    public SkeletonAnimation skeletonAnimation;
     public Rigidbody2D rb;
     public float timeSinceDeath;
 
@@ -77,7 +76,7 @@ public class CharacterController2D : MonoBehaviour
         DeathCanvas.SetActive(false);
     }
 
-    private void Awake()
+    new void Awake()
     {
         PauseCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
@@ -85,6 +84,7 @@ public class CharacterController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         self = this;
+        base.Awake();
     }
 
     public void OnCollisionEnter2D(Collision2D hit)
@@ -136,7 +136,7 @@ public class CharacterController2D : MonoBehaviour
 
     bool prevPause = false;
 
-    private void Update()
+    new void Update()
     {   if (GameController.G.isPaused)
         {
             if (rb.bodyType == RigidbodyType2D.Dynamic)
@@ -277,6 +277,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
         prevPause = GameController.G.isPaused;
-
+        base.Update();
     }
 }

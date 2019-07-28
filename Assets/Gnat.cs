@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gnat : MonoBehaviour
+public class Gnat : SkeletonAnimator
 {
     public ReverseParticleSystem Particles1;
     public ReverseParticleSystem Particles2;
 
-    private void Update()
+    new void Update()
     {
         if (Particles1 != null)
         {
@@ -33,6 +33,8 @@ public class Gnat : MonoBehaviour
                     Particles2.enabled = false;
                 }
             }
+
+            base.Update();
         }
     }
 }
