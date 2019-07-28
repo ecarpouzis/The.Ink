@@ -1,0 +1,34 @@
+
+SkullWasteland.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+LeftEye
+  rotate: false
+  xy: 1479, 1639
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+RightEye
+  rotate: false
+  xy: 1479, 1639
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+Mask
+  rotate: false
+  xy: 2, 2
+  size: 791, 240
+  orig: 791, 240
+  offset: 0, 0
+  index: -1
+Wasteland
+  rotate: false
+  xy: 2, 244
+  size: 1475, 1430
+  orig: 1475, 1430
+  offset: 0, 0
+  index: -1

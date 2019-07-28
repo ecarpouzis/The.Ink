@@ -35,7 +35,7 @@ public class UIButtons : MonoBehaviour
         GameController.G.currentTimePoint = 0f;
         GameController.G.timeSinceRewind = 0f;
         GameController.G.Pause();
-        GameObject.Find("GameMusic").GetComponent<MusicController>().PlayFromStart();
+        GameObject.Find("GameMusic").GetComponent<MusicController>().PlayFromCurpoint();
     }
 
 }

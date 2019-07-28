@@ -1,0 +1,45 @@
+{
+"skeleton": {
+	"hash": "rAtA/SSQTcCld1wn3lvLrWdri4k",
+	"spine": "3.8.52-beta",
+	"x": -694.47,
+	"y": -927.9,
+	"width": 1475,
+	"height": 1430,
+	"images": "Y:/Network Share/InkGame/Skullwasteland/images/",
+	"audio": "Y:/Network Share/InkGame/Skullwasteland"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "LeftEye", "parent": "root", "x": -140.73, "y": -10.34 },
+	{ "name": "RightEye", "parent": "root", "x": 123.74, "y": 5.47 }
+],
+"slots": [
+	{ "name": "Mask", "bone": "root", "attachment": "Mask" },
+	{ "name": "Wasteland", "bone": "root", "attachment": "Wasteland" },
+	{ "name": "LeftEye", "bone": "LeftEye", "attachment": "LeftEye" },
+	{ "name": "RightEye", "bone": "RightEye", "attachment": "RightEye" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"LeftEye": {
+				"LeftEye": { "x": 1.76, "y": -0.05, "width": 35, "height": 35 }
+			},
+			"Mask": {
+				"Mask": { "x": 176.03, "y": -613.9, "width": 791, "height": 240 }
+			},
+			"RightEye": {
+				"RightEye": { "x": 2.29, "y": 0.13, "width": 35, "height": 35 }
+			},
+			"Wasteland": {
+				"Wasteland": { "x": 43.03, "y": -212.9, "width": 1475, "height": 1430 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

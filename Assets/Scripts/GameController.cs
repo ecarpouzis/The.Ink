@@ -113,6 +113,14 @@ public class GameController : MonoBehaviour
     {
         isPaused = !isPaused;
         GameController.G.isRewinding = false;
+        if (isPaused)
+        {
+            MusicController.m.StopMusic();
+        }
+        else
+        {
+            MusicController.m.PlayFromCurpoint();
+        }
         pauseMenu.SetActive(isPaused);
     }
 
