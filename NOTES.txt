@@ -2,6 +2,13 @@ The compiled/built verison of the game handles the Menu pause differently than w
 
 While play testing this morning I discovered the following bugs/issues:
 
+
+7/28
+- Nose Dragon model/material is missing
+- Munch is missing entirely
+
+
+7/27
 - Character is not colliding properly against ShortPlatform assests 100% of the time
 - The Controller does not use the same illumination effect as mouse over, which could be confusing to some players
 - The Controller illumination, in some instances, did not work at all
