@@ -396,6 +396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1f71d85492de74999ee13d76f610a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  playAt: 0
 --- !u!114 &490188977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1f71d85492de74999ee13d76f610a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  playAt: 0
 --- !u!114 &628595728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,6 +759,7 @@ GameObject:
   - component: {fileID: 727909132}
   - component: {fileID: 727909129}
   - component: {fileID: 727909130}
+  - component: {fileID: 727909131}
   m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
@@ -795,6 +800,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639321033237f7a4bb0dccfcf767efed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &727909131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727909128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99c57abc3012854ab62808646ac83d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 235933253}
+  playAt: 0
 --- !u!61 &727909132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1088,6 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1f71d85492de74999ee13d76f610a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  playAt: 0
 --- !u!114 &1263177625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,6 +1357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1f71d85492de74999ee13d76f610a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  playAt: 0
 --- !u!114 &1753942767
 MonoBehaviour:
   m_ObjectHideFlags: 0
