@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Spine.Unity;
+using UnityEngine;
 
-public class NewCharacterController : MonoBehaviour
+public class NewCharacterController : SkeletonAnimator
 {
     private const float pad = 0.01f;
 
     private enum HorizInputs { None, Left, Right }
 
     private BoxCollider2D _boxCollider;
-    private Rigidbody2D _rigidbody;
+    public Rigidbody2D _rigidbody;
     private SkeletonAnimator _skeletonAnimator;
 
     private HorizInputs _currentHorizInput = HorizInputs.None;
@@ -15,43 +16,79 @@ public class NewCharacterController : MonoBehaviour
     private bool _jumpButtonInput = false;
     private float _jumpButtonInputDuration = 0f;
 
-    private void Awake()
+
+    public float timeSinceDeath;
+    public bool isDead = false;
+    public GameObject DeathObject;
+    public GameObject DeathCanvas;
+    public GameObject PauseCanvas;
+
+    new void Awake()
     {
+        PauseCanvas.SetActive(false);
+        DeathCanvas.SetActive(false);
         _boxCollider = GetComponent<BoxCollider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _skeletonAnimator = GetComponent<SkeletonAnimator>();
+        base.Awake();
     }
 
-    private void Update()
+    bool prevPause;
+    new void Update()
     {
-        // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-        float moveInput = Input.GetAxis("Horizontal");
+        if (GameController.G.isPaused)
+        {
+            //turn off y velocity here
+        }
+        if (GameController.G.isPlaying && !GameController.G.isPaused && !prevPause)
+        {
+            if (isDead && !GameController.G.isRewinding)
+            {
+                timeSinceDeath += Time.deltaTime;
+            }
+            if (isDead && GameController.G.isRewinding)
+            {
+                timeSinceDeath -= Time.deltaTime;
+                if (timeSinceDeath < 0)
+                {
+                    Revive();
+                }
+            }
+            else if (!isDead && !GameController.G.isRewinding)
+            {
+                // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
+                float moveInput = Input.GetAxis("Horizontal");
 
-        if (Mathf.Approximately(moveInput, 0))
-        {
-            _currentHorizInput = HorizInputs.None;
-        }
-        else if (moveInput > 0)
-        {
-            _currentHorizInput = HorizInputs.Right;
-        }
-        else
-        {
-            _currentHorizInput = HorizInputs.Left;
+                if (Mathf.Approximately(moveInput, 0))
+                {
+                    _currentHorizInput = HorizInputs.None;
+                }
+                else if (moveInput > 0)
+                {
+                    _currentHorizInput = HorizInputs.Right;
+                }
+                else
+                {
+                    _currentHorizInput = HorizInputs.Left;
+                }
+
+                if (Input.GetButton("Jump"))
+                {
+                    _jumpButtonInput = true;
+                }
+                else
+                {
+                    _jumpButtonInput = false;
+                    _jumpButtonInputDuration = 0f;
+                }
+
+                HorizontalFlipGraphics();
+                SwitchAnimations();
+            }
         }
 
-        if (Input.GetButton("Jump"))
-        {
-            _jumpButtonInput = true;
-        }
-        else
-        {
-            _jumpButtonInput = false;
-            _jumpButtonInputDuration = 0f;
-        }
-
-        HorizontalFlipGraphics();
-        SwitchAnimations();
+        prevPause = GameController.G.isPaused;
+        base.Update();
     }
 
     private void HorizontalFlipGraphics()
@@ -96,18 +133,25 @@ public class NewCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 velocity = _rigidbody.velocity;
+        if (GameController.G.isPlaying && !GameController.G.isPaused)
+        {
+            Vector2 velocity = _rigidbody.velocity;
 
-        velocity.x = AdjustHorizontalVelocity(velocity.x);
-        velocity.y = AdjustVerticalVelocity(velocity.y);
+            velocity.x = AdjustHorizontalVelocity(velocity.x);
+            velocity.y = AdjustVerticalVelocity(velocity.y);
 
-        _rigidbody.velocity = velocity;
+            _rigidbody.velocity = velocity;
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
     }
 
     private float AdjustHorizontalVelocity(float inputVelocity)
     {
-        const float Acceleration = 60f;
-        const float MaxVelocity = 12f;
+        const float MaxVelocity = 14f;
+        const float Acceleration = MaxVelocity * 7;
 
         float desiredVelocity;
 
@@ -129,6 +173,8 @@ public class NewCharacterController : MonoBehaviour
 
     private float AdjustVerticalVelocity(float inputVelocity)
     {
+        const float gravity = 100;
+        const float jumpHeight = 20f;
         bool isGrounded = IsGrounded();
         bool hitUp = _rigidbody.velocity.y < 0;
         bool jumpHasStarted = _jumpButtonInputDuration > 0;
@@ -142,15 +188,16 @@ public class NewCharacterController : MonoBehaviour
             }
 
             _jumpButtonInputDuration = 999f;
-            return Mathf.MoveTowards(Mathf.Min(0f, inputVelocity), -16f, 60f * Time.fixedDeltaTime);
+            return Mathf.MoveTowards(Mathf.Min(0f, inputVelocity), jumpHeight * -1, gravity * Time.fixedDeltaTime);
         }
         else if (canJumpUpdate && _jumpButtonInput)
         {
+            //Apply jump vel
             _jumpButtonInputDuration += Time.fixedDeltaTime;
 
-            if (_jumpButtonInputDuration < .2f)
+            if (_jumpButtonInputDuration < .3f)
             {
-                return 16f;
+                return jumpHeight;
             }
         }
 
@@ -160,7 +207,8 @@ public class NewCharacterController : MonoBehaviour
         }
         else
         {
-            return Mathf.MoveTowards(inputVelocity, -16f, 60f * Time.fixedDeltaTime);
+            //Apply gravity
+            return Mathf.MoveTowards(inputVelocity, jumpHeight * -1, gravity * Time.fixedDeltaTime);
         }
     }
 
@@ -195,4 +243,66 @@ public class NewCharacterController : MonoBehaviour
 
         return Physics2D.OverlapBox(origin, size, 0f, layerMask);
     }
+
+
+    public void Die()
+    {
+        if (isDead != true)
+        {
+            isDead = true;
+            skeletonAnimation.gameObject.SetActive(false);
+            DeathObject.SetActive(true);
+            DeathCanvas.SetActive(true);
+            var deathObject = DeathObject.GetComponent<SkeletonAnimation>();
+
+            _rigidbody.velocity = Vector2.zero;
+
+            Vector3 newScale = transform.localScale;
+            newScale.x = 1;
+            transform.localScale = newScale;
+
+            var deathAnim = deathObject.AnimationState.SetAnimation(0, "Splat", false);
+            deathAnim.TrackTime = 0;
+            GameController.G.DeathPause();
+        }
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+        GameController.G.isPlaying = true;
+        GameController.G.isDeathPaused = false;
+        DeathObject.SetActive(false);
+        DeathCanvas.SetActive(false);
+        skeletonAnimation.gameObject.SetActive(true);
+    }
+
+    public void OnCollisionEnter2D(Collision2D hit)
+    {
+        SpecialHitTypeCheck(hit.collider);
+    }
+
+    void SpecialHitTypeCheck(Collider2D hit)
+    {
+        if (!GameController.G.isRewinding)
+        {
+            if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer"))
+            {
+                Die();
+            }
+            else if (hit.gameObject.layer == LayerMask.NameToLayer("Bouncy"))
+            {
+                float bounceVelocity = hit.GetComponent<Bounciness>().bounciness;
+                Bounce(bounceVelocity);
+            }
+        }
+    }
+
+    void Bounce(float bounceVelocity)
+    {
+        Vector2 newVel = _rigidbody.velocity;
+        newVel.y = bounceVelocity;
+        _rigidbody.velocity = newVel;
+    }
+
 }

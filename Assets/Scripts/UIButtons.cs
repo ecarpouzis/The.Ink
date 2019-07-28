@@ -19,14 +19,13 @@ public class UIButtons : MonoBehaviour
     public void RestartGame()
     {
         Transform playerStartPosition = GameObject.Find("CharStartPosition").transform;
-        CharacterController2D character = GameObject.Find("Character").GetComponent<CharacterController2D>();
+        NewCharacterController character = GameObject.Find("Character").GetComponent<NewCharacterController>();
         character.Revive();
         character.transform.position = playerStartPosition.position;
         character.transform.localScale = playerStartPosition.localScale;
         character.skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
-        character.grounded = true;
         character.timeSinceDeath = 0f;
-        character.velocity = Vector2.zero;
+        character._rigidbody.velocity = Vector2.zero;
         character.gameObject.GetComponent<TimeController>().Reset();
         GameController.G.timeSinceStart = 1;
         GameController.G.isRewinding = false;

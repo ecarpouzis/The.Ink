@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public float timeSinceStart = 0f;
     int maxGameTime = 60;
     public CameraController CameraController;
-    public CharacterController2D CharacterController;
+    public NewCharacterController CharacterController;
     TimeController characterTimeController;
     public static GameController G;
     public bool isRewinding = false;
@@ -26,6 +26,10 @@ public class GameController : MonoBehaviour
     public bool isDeathPaused = false;
     public bool isPaused = false;
 
+    float fixedTime = 0f;
+    float fixedRewindTime = 0f;
+    public float fixedTimePoint { get { return fixedTime - fixedRewindTime; } }
+
     private void Awake()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
@@ -38,8 +42,23 @@ public class GameController : MonoBehaviour
         isPlaying = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
+    {
+        if (isPlaying && !isDeathPaused)
+        {
+            if (isRewinding)
+            {
+                fixedTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                fixedRewindTime += Time.fixedDeltaTime;
+            }
+        }
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         if (!isPaused)
         {
