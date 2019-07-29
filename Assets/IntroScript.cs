@@ -8,11 +8,16 @@ public class IntroScript : MonoBehaviour
     float timeSinceStart;
     bool gameStarted = false;
     public Transform drip;
-    float dropSpeed = .6f;
+    float dropSpeed = .8f;
     public ParticleSystem gameStartSplash;
     public MeshRenderer character;
     public GameObject Logo;
     public GameObject introCanvas;
+    public GameObject fleaBubbles;
+    public GameObject queenBubble1;
+    public GameObject queenBubble2;
+    public MeshRenderer queen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +52,10 @@ public class IntroScript : MonoBehaviour
             character.enabled = true;
             Logo.SetActive(false);
             introCanvas.SetActive(false);
+            fleaBubbles.SetActive(true);
+            queenBubble1.SetActive(true);
+            queenBubble2.SetActive(true);
+            queen.enabled = true;
             Destroy(drip.gameObject);
             Destroy(this.gameObject);
         }
