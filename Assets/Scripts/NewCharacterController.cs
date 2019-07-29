@@ -59,17 +59,17 @@ public class NewCharacterController : SkeletonAnimator
                 // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
                 float moveInput = Input.GetAxis("Horizontal");
 
-                if (Mathf.Approximately(moveInput, 0))
-                {
-                    _currentHorizInput = HorizInputs.None;
-                }
-                else if (moveInput > 0)
+                if (moveInput > 0.05f)
                 {
                     _currentHorizInput = HorizInputs.Right;
                 }
-                else
+                else if(moveInput < -0.05f)
                 {
                     _currentHorizInput = HorizInputs.Left;
+                }
+                else
+                {
+                    _currentHorizInput = HorizInputs.None;
                 }
 
                 if (Input.GetButton("Jump"))
@@ -150,8 +150,9 @@ public class NewCharacterController : SkeletonAnimator
 
     private float AdjustHorizontalVelocity(float inputVelocity)
     {
-        const float MaxVelocity = 17f;
-        const float Acceleration = MaxVelocity * 7;
+        const float MaxVelocity = 15f;
+        const float Acceleration = MaxVelocity * 20;
+        const float AirAcceleration = 80f;
 
         float desiredVelocity;
 
@@ -167,14 +168,22 @@ public class NewCharacterController : SkeletonAnimator
         {
             desiredVelocity = 0;
         }
-
-        return Mathf.MoveTowards(inputVelocity, desiredVelocity, Acceleration * Time.fixedDeltaTime);
+        bool grounded = IsGrounded();
+        if (grounded)
+        {
+            return Mathf.MoveTowards(inputVelocity, desiredVelocity, Acceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            return Mathf.MoveTowards(inputVelocity, desiredVelocity, AirAcceleration * Time.fixedDeltaTime);
+        }
     }
 
     private float AdjustVerticalVelocity(float inputVelocity)
     {
-        const float gravity = 225f;
-        const float jumpHeight = 20f;
+        const float MaxGravVelocity = 50f;
+        const float gravity = 150f;
+        const float jumpHeight = 35f;
         bool isGrounded = IsGrounded();
         bool hitUp = _rigidbody.velocity.y < 0;
         bool jumpHasStarted = _jumpButtonInputDuration > 0;
@@ -188,14 +197,14 @@ public class NewCharacterController : SkeletonAnimator
             }
 
             _jumpButtonInputDuration = 999f;
-            return Mathf.MoveTowards(Mathf.Min(0f, inputVelocity), jumpHeight * -1, gravity * Time.fixedDeltaTime);
+            return Mathf.MoveTowards(Mathf.Min(0f, inputVelocity), MaxGravVelocity * -1, gravity * Time.fixedDeltaTime);
         }
         else if (canJumpUpdate && _jumpButtonInput)
         {
             //Apply jump vel
             _jumpButtonInputDuration += Time.fixedDeltaTime;
 
-            if (_jumpButtonInputDuration < .3f)
+            if (_jumpButtonInputDuration < .1f)
             {
                 return jumpHeight;
             }
@@ -208,7 +217,7 @@ public class NewCharacterController : SkeletonAnimator
         else
         {
             //Apply gravity
-            return Mathf.MoveTowards(inputVelocity, jumpHeight * -1, gravity * Time.fixedDeltaTime);
+            return Mathf.MoveTowards(inputVelocity, MaxGravVelocity * -1, gravity * Time.fixedDeltaTime);
         }
     }
 

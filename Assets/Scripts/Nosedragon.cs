@@ -8,7 +8,7 @@ public class Nosedragon : SkeletonAnimator
     // Start is called before the first frame update
     void Start()
     {
-        base.playAt = 33;
+        base.playAt = 32;
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         var noseSway = skeletonAnimation.AnimationState.SetAnimation(0, "NoseSway", true);
     }
