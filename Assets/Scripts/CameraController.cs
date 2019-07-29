@@ -8,9 +8,9 @@ public class CameraController : MonoBehaviour
     private Vector3 endPosition;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        startPosition = transform.position;
+        startPosition = GameObject.Find("StartCameraPosition").transform.position;
         endPosition = transform.position;
         endPosition.y += 250;
     }

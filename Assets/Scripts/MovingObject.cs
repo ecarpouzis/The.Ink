@@ -75,25 +75,17 @@ public class MovingObject : MonoBehaviour
 
             float closeStart = Mathf.Abs(startPosition.x - newPos.x);
             float closeEnd = Mathf.Abs(endPosition.x - newPos.x);
-
-            if (closeStart < .3f || closeEnd < .3f)
+            //Debug.Log("Timepoint: "+GameController.G.fixedTimePoint+" Fixed Distance:"+Vector2.Distance(startPosition,endPosition)+" Attempted Distance Traveled: "+(adjustedTime * speed));
+            //Debug.Log(" Distance Traveled modded by Fixed Distance: " + (adjustedTime * speed) % Vector2.Distance(startPosition, endPosition) + " Prev value modded 2:" + (((adjustedTime * speed) % Vector2.Distance(startPosition, endPosition))%2));
+            //One minus the Total Distance traveled, modded by the distance between Start and End, modded by 2.
+            float curDir = -1+(((adjustedTime * speed) % Vector2.Distance(startPosition, endPosition)) % 2);
+            if (curDir > 0)
             {
-                closeToStartOrEnd = true;
+                curScale.x = -1;
             }
-            if (!closeToStartOrEnd && hasFlipped)
+            else
             {
-                hasFlipped = false;
-            }
-
-
-            if (closeToStartOrEnd && !hasFlipped)
-            {
-                if (GameController.G.currentTimePoint > .5f)
-                {
-                    curScale.x = curScale.x * -1;
-                }
-                hasFlipped = true;
-
+                curScale.x = 1;
             }
             transform.localScale = curScale;
             _rigidbody.MovePosition(newPos);

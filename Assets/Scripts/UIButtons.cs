@@ -27,12 +27,8 @@ public class UIButtons : MonoBehaviour
         character.timeSinceDeath = 0f;
         character._rigidbody.velocity = Vector2.zero;
         character.gameObject.GetComponent<TimeController>().Reset();
-        GameController.G.timeSinceStart = 1;
         GameController.G.isRewinding = false;
-        GameController.G.timePlaying = 0f;
-        GameController.G.timeRewinding = 0f;
-        GameController.G.currentTimePoint = 0f;
-        GameController.G.timeSinceRewind = 0f;
+        GameController.G.ResetTimes();
         GameController.G.Pause();
         GameObject.Find("GameMusic").GetComponent<MusicController>().PlayFromCurpoint();
     }

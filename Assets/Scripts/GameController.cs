@@ -30,6 +30,15 @@ public class GameController : MonoBehaviour
     float fixedRewindTime = 0f;
     public float fixedTimePoint { get { return fixedTime - fixedRewindTime; } }
 
+    public void ResetTimes()
+    {
+        timePlaying = 0f;
+        fixedTime = 0f;
+        fixedRewindTime = 0f;
+        timeRewinding = 0f;
+        currentTimePoint = 0f;
+        timeSinceRewind = 0f;
+    }
     private void Awake()
     {
         characterTimeController = CharacterController.GetComponent<TimeController>();
@@ -55,8 +64,11 @@ public class GameController : MonoBehaviour
                 fixedRewindTime += Time.fixedDeltaTime;
             }
         }
+
+        percThroughTime = ((fixedTimePoint - 0) / (maxGameTime - 0));
     }
 
+    public Camera mainCam;
     // Update is called once per frame
     void Update()
     {
@@ -74,7 +86,7 @@ public class GameController : MonoBehaviour
         timeSinceStart += Time.deltaTime;
 
 
-        if (timeSinceStart > timeToStart && !isPlaying && !isDeathPaused)
+        if (timeSinceStart > timeToStart && !isPlaying && !isDeathPaused && mainCam.enabled)
         {
             StartPlaying();
         }
@@ -99,7 +111,6 @@ public class GameController : MonoBehaviour
 
                     //Total time elapsed since game start
                     currentTimePoint = timePlaying - timeRewinding;
-                    percThroughTime = ((currentTimePoint - 0) / (maxGameTime - 0));
 
                     TimeLeft.text = GetSecondsLeftAsString();
                     WhiteTimeLeft.text = GetSecondsLeftAsString();
@@ -184,7 +195,7 @@ public class GameController : MonoBehaviour
         return (maxGameTime - (int)fixedTimePoint).ToString();
     }
 
-    void StartPlaying()
+    public void StartPlaying()
     {
         MusicController.m.StartForwardMusic();
         isPlaying = true;

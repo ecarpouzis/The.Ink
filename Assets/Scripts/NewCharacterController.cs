@@ -230,7 +230,7 @@ public class NewCharacterController : SkeletonAnimator
 
         Vector2 size = new Vector2(boxSize.x / 2f - pad, pad);
 
-        return Physics2D.OverlapBox(origin, size, 0f, layerMask);
+        return Physics2D.OverlapBox(origin, size, 0f, groundMaskCheck);
     }
 
     public LayerMask groundMaskCheck;
@@ -303,6 +303,9 @@ public class NewCharacterController : SkeletonAnimator
             {
                 float bounceVelocity = hit.GetComponent<Bounciness>().bounciness;
                 Bounce(bounceVelocity);
+            } else if(hit.gameObject.layer == LayerMask.NameToLayer("Ending"))
+            {
+                hit.GetComponent<EndGameObject>().DoEnding();
             }
         }
     }
