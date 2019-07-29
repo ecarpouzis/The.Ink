@@ -16,8 +16,24 @@ public class Nosedragon : SkeletonAnimator
     bool hasPlayedMooseman = false;
     Spine.TrackEntry mooseTrack;
 
+    public ReverseParticleSystem noseBubblesRewind;
     new void Update()
     {
+        if (GameController.G.isRewinding)
+        {
+            if (!noseBubblesRewind.enabled)
+            {
+                noseBubblesRewind.enabled = true;
+            }
+        }
+        else
+        {
+            if (noseBubblesRewind.enabled)
+            {
+                noseBubblesRewind.enabled = false;
+            }
+        }
+
         //If we we haven't played the animation, it's after the time to start, and we're not rewinding, play the animation
         if (!hasPlayedMooseman && GameController.G.currentTimePoint > base.playAt && !GameController.G.isRewinding)
         {

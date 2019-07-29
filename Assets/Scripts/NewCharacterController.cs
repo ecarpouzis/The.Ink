@@ -36,10 +36,6 @@ public class NewCharacterController : SkeletonAnimator
     bool prevPause;
     new void Update()
     {
-        if (GameController.G.isPaused)
-        {
-            //turn off y velocity here
-        }
         if (GameController.G.isPlaying && !GameController.G.isPaused && !prevPause)
         {
             if (isDead && !GameController.G.isRewinding)
@@ -237,20 +233,18 @@ public class NewCharacterController : SkeletonAnimator
         return Physics2D.OverlapBox(origin, size, 0f, layerMask);
     }
 
+    public LayerMask groundMaskCheck;
     private bool IsGrounded()
     {
-        // Hit anything other than the player
-        var layerMask = ~LayerMask.GetMask("Player");
-
         var boxCenter = (Vector2)_boxCollider.bounds.center;
         var boxSize = (Vector2)_boxCollider.bounds.size;
 
         Vector2 origin = boxCenter;
-        origin.y -= boxSize.y / 2f - pad / 2f;
+        origin.y -= boxSize.y / 2f ;
 
-        Vector2 size = new Vector2(boxSize.x / 2f - pad, pad);
+        Vector2 size = new Vector2(boxSize.x / 2f, pad);
 
-        return Physics2D.OverlapBox(origin, size, 0f, layerMask);
+        return Physics2D.OverlapBox(origin, size, 0f, groundMaskCheck);
     }
 
 
@@ -286,9 +280,15 @@ public class NewCharacterController : SkeletonAnimator
         skeletonAnimation.gameObject.SetActive(true);
     }
 
-    public void OnCollisionEnter2D(Collision2D hit)
+
+    public void OnTriggerEnter2D(Collider2D hit)
     {
-        SpecialHitTypeCheck(hit.collider);
+        SpecialHitTypeCheck(hit);
+    }
+
+    public void OnTriggerStay2D(Collider2D hit)
+    {
+        SpecialHitTypeCheck(hit);
     }
 
     void SpecialHitTypeCheck(Collider2D hit)
