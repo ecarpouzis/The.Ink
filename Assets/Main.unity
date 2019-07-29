@@ -7057,7 +7057,7 @@ MonoBehaviour:
   endPosition: {x: -12, y: 27, z: 0}
   delay: 0
   speed: 0.4
-  offsetTime: 0
+  offsetTime: 9
   order: 0
 --- !u!114 &502099869
 MonoBehaviour:
