@@ -58,41 +58,42 @@ public class MovingObject : MonoBehaviour
             }
         }
     }
-
+    
+    bool hasFlipped = false;
     // Update is called once per frame
     void FixedUpdate()
     {
         float adjustedTime = GameController.G.fixedTimePoint + offsetTime;
 
-        curLoopPoint = Mathf.PingPong(adjustedTime * speed, 1);
-
-        Vector2 oldPos = _rigidbody.position;
-        Vector2 newPos = Vector2.Lerp(startPosition, endPosition, curLoopPoint);
-
         if (loopMovement)
         {
             Vector2 curScale = transform.localScale;
-            if (GameController.G.isRewinding)
+            curLoopPoint = Mathf.PingPong(adjustedTime * speed, 1);
+            Vector2 newPos = Vector2.Lerp(startPosition, endPosition, curLoopPoint);
+
+            bool closeToStartOrEnd = false;
+
+            float closeStart = Mathf.Abs(startPosition.x - newPos.x);
+            float closeEnd = Mathf.Abs(endPosition.x - newPos.x);
+
+            if (closeStart < .3f || closeEnd < .3f)
             {
-                if (oldPos.x > newPos.x)
-                {
-                    curScale.x = -1;
-                }
-                else
-                {
-                    curScale.x = 1;
-                }
+                closeToStartOrEnd = true;
             }
-            else
+            if (!closeToStartOrEnd && hasFlipped)
             {
-                if (oldPos.x > newPos.x)
+                hasFlipped = false;
+            }
+
+
+            if (closeToStartOrEnd && !hasFlipped)
+            {
+                if (GameController.G.currentTimePoint > .5f)
                 {
-                    curScale.x = 1;
+                    curScale.x = curScale.x * -1;
                 }
-                else
-                {
-                    curScale.x = -1;
-                }
+                hasFlipped = true;
+
             }
             transform.localScale = curScale;
             _rigidbody.MovePosition(newPos);

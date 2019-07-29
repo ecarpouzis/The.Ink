@@ -17,13 +17,13 @@ public class MusicController : MonoBehaviour
     {
         gameMusicReversed.Stop();
         gameMusic.Stop();
-        gameMusic.Play(GameController.G.currentTimePoint);
+        gameMusic.Play(GameController.G.fixedTimePoint);
     }
 
     public void StartForwardMusic()
     {
         gameMusicReversed.Stop();
-        gameMusic.Play(GameController.G.currentTimePoint);
+        gameMusic.Play(GameController.G.fixedTimePoint);
     }
 
 
@@ -37,7 +37,7 @@ public class MusicController : MonoBehaviour
     public void StartRewoundMusic()
     {
         gameMusic.Stop();
-        gameMusicReversed.Play(gameMusicReversed.thisClip.clip.length - GameController.G.currentTimePoint);
+        gameMusicReversed.Play(gameMusicReversed.thisClip.clip.length - GameController.G.fixedTimePoint);
     }
 
 }

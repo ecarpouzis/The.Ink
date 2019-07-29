@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isPlaying && !isDeathPaused)
+        if (isPlaying && !isDeathPaused && !isPaused)
         {
             if (!isRewinding)
             {
@@ -57,8 +57,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (!isPaused)
         {
@@ -177,11 +177,11 @@ public class GameController : MonoBehaviour
 
     int GetSecondsLeft()
     {
-        return maxGameTime - (int)currentTimePoint;
+        return maxGameTime - (int)fixedTimePoint;
     }
     string GetSecondsLeftAsString()
     {
-        return (maxGameTime - (int)currentTimePoint).ToString();
+        return (maxGameTime - (int)fixedTimePoint).ToString();
     }
 
     void StartPlaying()

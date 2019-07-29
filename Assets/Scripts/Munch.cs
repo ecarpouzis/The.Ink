@@ -10,6 +10,7 @@ public class Munch : SkeletonAnimator
         var LowerClawTwitch = skeletonAnimation.AnimationState.SetAnimation(1, "LowerClawTwitch", true);
         var NewWalk = skeletonAnimation.AnimationState.SetAnimation(2, "NewWalk", true);
         var ArmSway = skeletonAnimation.AnimationState.SetAnimation(3, "ArmSway", true);
+        NewWalk.TimeScale = 2f;
     }
     
 

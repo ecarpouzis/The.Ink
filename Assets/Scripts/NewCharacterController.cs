@@ -173,7 +173,7 @@ public class NewCharacterController : SkeletonAnimator
 
     private float AdjustVerticalVelocity(float inputVelocity)
     {
-        const float gravity = 100;
+        const float gravity = 225f;
         const float jumpHeight = 20f;
         bool isGrounded = IsGrounded();
         bool hitUp = _rigidbody.velocity.y < 0;

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "AXf1XWUd8vcYS47/24xHr7SXFoA",
+	"hash": "p5aeuhyaFcRit7SlUqM4zh+60K0",
 	"spine": "3.8.52-beta",
 	"x": -3468.37,
 	"y": -501.7,
@@ -132,15 +132,15 @@
 	{ "name": "EyeBase", "parent": "Head", "x": 340.08, "y": 55.98 },
 	{ "name": "EyeBase2", "parent": "EyeBase", "rotation": 151.53, "x": 391.7, "y": -14.59 },
 	{ "name": "EyeBase3", "parent": "EyeBase", "rotation": 151.53, "x": 364.84, "y": -116.99 },
-	{ "name": "EyeBase4", "parent": "EyeBase", "rotation": 151.53, "x": 301.51, "y": -176.67 },
-	{ "name": "EyeBase5", "parent": "EyeBase", "rotation": 151.53, "x": 290.31, "y": -269.21 },
-	{ "name": "EyeBase6", "parent": "EyeBase", "rotation": 151.53, "x": 172.58, "y": -255.82 },
-	{ "name": "EyeBase7", "parent": "EyeBase", "rotation": 151.53, "x": 56.43, "y": -195.12 },
-	{ "name": "EyeBase8", "parent": "EyeBase", "rotation": 158.47, "x": -131.19, "y": -323.8 },
-	{ "name": "EyeBase9", "parent": "EyeBase", "rotation": 151.53, "x": -213.91, "y": -145.98 },
-	{ "name": "EyeBase10", "parent": "EyeBase", "rotation": 151.53, "x": -98.71, "y": -113.28 },
-	{ "name": "EyeBase11", "parent": "EyeBase", "rotation": 151.53, "x": 54.19, "y": -99.88 },
-	{ "name": "EyeBase12", "parent": "EyeBase", "rotation": 151.53, "x": 213.11, "y": -149.37 },
+	{ "name": "EyeBase4", "parent": "EyeBase", "rotation": 151.53, "x": 299.61, "y": -175.36 },
+	{ "name": "EyeBase5", "parent": "EyeBase", "x": 264.91, "y": -285.91 },
+	{ "name": "EyeBase6", "parent": "EyeBase", "x": 134.94, "y": -300.76 },
+	{ "name": "EyeBase7", "parent": "EyeBase", "x": 10.32, "y": -223.76 },
+	{ "name": "EyeBase8", "parent": "EyeBase", "x": -113.69, "y": -303.79 },
+	{ "name": "EyeBase9", "parent": "EyeBase", "x": -235.32, "y": -160.91 },
+	{ "name": "EyeBase10", "parent": "EyeBase", "rotation": 158.47, "x": -97.28, "y": -156.89 },
+	{ "name": "EyeBase11", "parent": "EyeBase", "x": 19.2, "y": -112.7 },
+	{ "name": "EyeBase12", "parent": "EyeBase", "rotation": 3.6, "x": 162.33, "y": -190.41 },
 	{ "name": "EyeBase13", "parent": "EyeBase", "rotation": 151.53, "x": 286.41, "y": -88.22 },
 	{ "name": "EyeBase14", "parent": "EyeBase", "rotation": 151.53, "x": 249.56, "y": -16.63 },
 	{ "name": "EyeBase15", "parent": "EyeBase", "rotation": 151.53, "x": 307.14, "y": 155.11 },
@@ -398,17 +398,14 @@
 			"Eyes-10": {
 				"Eyes-10": { "x": -363.79, "y": 18.1, "rotation": 163.04, "width": 22, "height": 21 }
 			},
-			"JawFront": {
-				"JawFront": { "x": 159.75, "y": -40.8, "rotation": 147.94, "width": 548, "height": 787 }
-			},
 			"JawBack": {
 				"JawBack": { "x": 266.67, "y": -104.94, "rotation": 147.94, "width": 776, "height": 814 }
 			},
 			"Layer 22": {
 				"Layer 22": { "x": 0.39, "y": -1.74, "rotation": 11.51, "width": 12, "height": 13 }
 			},
-			"Layer 26": {
-				"Layer 26": { "x": 2.93, "y": 0.34, "rotation": 11.51, "width": 15, "height": 13 }
+			"JawFront": {
+				"JawFront": { "x": 159.75, "y": -40.8, "rotation": 147.94, "width": 548, "height": 787 }
 			},
 			"Eyes-32": {
 				"Eyes-32": { "x": -200.93, "y": 204.19, "rotation": 163.04, "width": 73, "height": 66 }
@@ -447,11 +444,11 @@
 			"Layer 25": {
 				"Layer 25": { "x": -0.66, "y": -0.33, "rotation": 11.51, "width": 10, "height": 10 }
 			},
+			"Layer 20": {
+				"Layer 20": { "x": -0.1, "y": 0.64, "rotation": 11.51, "width": 8, "height": 9 }
+			},
 			"Layer 27": {
 				"Layer 27": { "x": 2.8, "y": 0.96, "rotation": 11.51, "width": 12, "height": 11 }
-			},
-			"Layer 30": {
-				"Layer 30": { "x": 2.42, "y": -0.33, "rotation": 11.51, "width": 9, "height": 8 }
 			},
 			"Layer 28": {
 				"Layer 28": { "x": 1.22, "y": 0.51, "rotation": 11.51, "width": 9, "height": 8 }
@@ -466,7 +463,7 @@
 				"LegLeftFront3": { "x": 234.54, "y": 11.67, "rotation": 97.27, "width": 105, "height": 473 }
 			},
 			"Layer 13": {
-				"Layer 13": { "x": -8.78, "y": -24.94, "rotation": 11.51, "width": 10, "height": 12 }
+				"Layer 13": { "x": -0.18, "y": -0.04, "rotation": 169.98, "width": 10, "height": 12 }
 			},
 			"ArmClose": {
 				"ArmClose": {
@@ -498,6 +495,9 @@
 			},
 			"Head": {
 				"Head": { "x": 367.45, "y": 36.12, "rotation": 161.6, "width": 961, "height": 779 }
+			},
+			"Layer 26": {
+				"Layer 26": { "x": 2.93, "y": 0.34, "rotation": 11.51, "width": 15, "height": 13 }
 			},
 			"Eyes-19": {
 				"Eyes-19": { "x": -399.96, "y": 58.92, "rotation": 163.04, "width": 25, "height": 28 }
@@ -532,26 +532,26 @@
 			"Eyes-6": {
 				"Eyes-6": { "x": -239.76, "y": -159.27, "rotation": 163.59, "width": 54, "height": 59 }
 			},
-			"Eyes-9": {
-				"Eyes-9": { "x": 219.54, "y": 84.85, "rotation": 163.04, "width": 77, "height": 71 }
+			"Layer 30": {
+				"Layer 30": { "x": 2.42, "y": -0.33, "rotation": 11.51, "width": 9, "height": 8 }
 			},
 			"Layer 31": {
 				"Layer 31": { "x": 0.14, "y": 1.52, "rotation": 11.51, "width": 9, "height": 10 }
 			},
-			"Layer 32": {
-				"Layer 32": { "x": 0.96, "y": 2.06, "rotation": 11.51, "width": 14, "height": 18 }
+			"Eyes-9": {
+				"Eyes-9": { "x": 219.54, "y": 84.85, "rotation": 163.04, "width": 77, "height": 71 }
 			},
 			"Layer 33": {
-				"Layer 33": { "x": 2.78, "y": -0.19, "rotation": 11.51, "width": 15, "height": 18 }
+				"Layer 33": { "x": 0.48, "y": 0.06, "rotation": 11.51, "width": 15, "height": 18 }
 			},
 			"Layer 34": {
-				"Layer 34": { "x": 24.95, "y": 59.95, "rotation": 11.51, "width": 11, "height": 10 }
+				"Layer 34": { "x": 0.29, "y": 0.21, "rotation": 159.44, "width": 11, "height": 10 }
 			},
 			"Layer 35": {
 				"Layer 35": { "x": -0.57, "y": -0.74, "rotation": 11.51, "width": 14, "height": 13 }
 			},
 			"Layer 36": {
-				"Layer 36": { "x": 11.68, "y": 57.24, "rotation": 11.51, "width": 18, "height": 19 }
+				"Layer 36": { "x": 0.09, "y": 0.19, "rotation": 163.04, "width": 18, "height": 19 }
 			},
 			"LegBR1": {
 				"LegLeftMid1": {
@@ -566,7 +566,7 @@
 				}
 			},
 			"Layer 38": {
-				"Layer 38": { "x": 11.78, "y": 24.1, "rotation": 11.51, "width": 9, "height": 9 }
+				"Layer 38": { "x": -0.43, "y": -0.64, "rotation": 163.04, "width": 9, "height": 9 }
 			},
 			"LegBR3": {
 				"LegLeftMid2": { "x": 156.51, "y": -22.23, "rotation": 88.97, "width": 153, "height": 547 }
@@ -588,7 +588,7 @@
 				}
 			},
 			"Layer 37": {
-				"Layer 37": { "x": 15.07, "y": 27.11, "rotation": 11.51, "width": 11, "height": 10 }
+				"Layer 37": { "x": -0.76, "y": 0.05, "rotation": 163.04, "width": 11, "height": 10 }
 			},
 			"Body": {
 				"Body": { "x": 701.4, "y": -22.5, "rotation": -90, "width": 1007, "height": 1463 }
@@ -639,14 +639,11 @@
 			"LegL4": {
 				"LegR4": { "path": "LegLeftMid3", "x": 92.7, "y": -31.47, "rotation": 105.57, "width": 228, "height": 342 }
 			},
-			"Layer 20": {
-				"Layer 20": { "x": -0.1, "y": 0.64, "rotation": 11.51, "width": 8, "height": 9 }
-			},
 			"Eyes-8": {
 				"Eyes-8": { "x": -418.22, "y": 12.74, "rotation": 163.04, "width": 33, "height": 29 }
 			},
 			"Layer 12": {
-				"Layer 12": { "x": 26.7, "y": 48.07, "rotation": 11.51, "width": 13, "height": 13 }
+				"Layer 12": { "x": -0.27, "y": -0.89, "rotation": 163.04, "width": 13, "height": 13 }
 			},
 			"Eyes-29": {
 				"Eyes-29": { "x": 56.2, "y": 120.02, "rotation": 163.04, "width": 88, "height": 89 }
@@ -655,13 +652,16 @@
 				"Eyes-31": { "x": 298.28, "y": 159.63, "rotation": 163.04, "width": 40, "height": 36 }
 			},
 			"Layer 10": {
-				"Layer 10": { "x": -21.14, "y": 37.58, "rotation": 11.51, "width": 17, "height": 16 }
+				"Layer 10": { "rotation": 11.51, "width": 17, "height": 16 }
 			},
 			"Eyes-7": {
 				"Eyes-7": { "x": 263.81, "y": -285.24, "rotation": 163.04, "width": 50, "height": 51 }
 			},
 			"Eyes-20": {
 				"Eyes-20": { "x": 242.51, "y": -14.68, "rotation": 163.04, "width": 63, "height": 68 }
+			},
+			"LegBL4": {
+				"LegLeftMid3": { "x": 92.7, "y": -31.47, "rotation": 105.57, "width": 228, "height": 342 }
 			},
 			"Eyes-21": {
 				"Eyes-21": { "x": -328.13, "y": 88.77, "rotation": 163.04, "width": 43, "height": 43 }
@@ -679,7 +679,7 @@
 				"Eyes-25": { "x": -22.27, "y": 10.13, "rotation": 163.04, "width": 96, "height": 91 }
 			},
 			"Layer 11": {
-				"Layer 11": { "x": 24.15, "y": 27.2, "rotation": 11.51, "width": 14, "height": 14 }
+				"Layer 11": { "x": 0.89, "width": 14, "height": 14 }
 			},
 			"Eyes-27": {
 				"Eyes-27": { "x": 115.24, "y": 1.66, "rotation": 163.04, "width": 92, "height": 59 }
@@ -720,8 +720,8 @@
 			"LegBL3": {
 				"LegLeftMid2": { "x": 156.51, "y": -22.23, "rotation": 88.97, "width": 153, "height": 547 }
 			},
-			"LegBL4": {
-				"LegLeftMid3": { "x": 92.7, "y": -31.47, "rotation": 105.57, "width": 228, "height": 342 }
+			"Layer 32": {
+				"Layer 32": { "x": 0.96, "y": 2.06, "rotation": 11.51, "width": 14, "height": 18 }
 			},
 			"LegFL1": {
 				"LegLeftFront1": {
