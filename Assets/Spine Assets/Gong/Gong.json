@@ -1,0 +1,60 @@
+{
+"skeleton": {
+	"hash": "80jecxALh5Dbm36CuVz6xGbJ1F8",
+	"spine": "3.8.52-beta",
+	"x": -776.72,
+	"y": -778.16,
+	"width": 1537,
+	"height": 1786,
+	"images": "Y:/Network Share/InkGame/Gong/images/",
+	"audio": "Y:/Network Share/InkGame/Gong"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "Pupil", "parent": "root", "x": -0.83, "y": 1.41 }
+],
+"slots": [
+	{ "name": "GongRope", "bone": "root", "attachment": "GongRope" },
+	{ "name": "GongCircle3", "bone": "root", "attachment": "GongCircle3" },
+	{ "name": "GongCircle2", "bone": "root", "attachment": "GongCircle2" },
+	{ "name": "GongCircle", "bone": "root", "attachment": "GongCircle" },
+	{ "name": "GongPattern", "bone": "root", "attachment": "GongPattern" },
+	{ "name": "GongEye", "bone": "root", "attachment": "GongEye" },
+	{ "name": "GongPupil", "bone": "Pupil", "attachment": "GongPupil" },
+	{ "name": "Layer 10", "bone": "root", "attachment": "Layer 10" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"GongPattern": {
+				"GongPattern": { "x": -0.22, "y": -4.66, "width": 1065, "height": 1065 }
+			},
+			"GongRope": {
+				"GongRope": { "x": -3.22, "y": 700.34, "width": 1217, "height": 615 }
+			},
+			"GongCircle2": {
+				"GongCircle2": { "x": -5.72, "y": -21.16, "width": 1156, "height": 1156 }
+			},
+			"GongCircle3": {
+				"GongCircle3": { "x": -8.22, "y": -9.66, "width": 1537, "height": 1537 }
+			},
+			"GongPupil": {
+				"GongPupil": { "x": 1.11, "y": 0.43, "width": 44, "height": 44 }
+			},
+			"Layer 10": {
+				"Layer 10": { "x": -3.22, "y": -13.66, "width": 1291, "height": 1289 }
+			},
+			"GongEye": {
+				"GongEye": { "x": -0.72, "y": 0.84, "width": 126, "height": 126 }
+			},
+			"GongCircle": {
+				"GongCircle": { "x": -1.22, "y": -13.66, "width": 1351, "height": 1351 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

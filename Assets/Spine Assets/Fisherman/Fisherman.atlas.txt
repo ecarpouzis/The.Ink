@@ -1,0 +1,118 @@
+
+Fisherman.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 2194, 1332
+  size: 909, 1442
+  orig: 909, 1442
+  offset: 0, 0
+  index: -1
+CloseArm
+  rotate: false
+  xy: 2194, 508
+  size: 583, 822
+  orig: 583, 822
+  offset: 0, 0
+  index: -1
+CloseHand
+  rotate: false
+  xy: 2779, 554
+  size: 388, 309
+  orig: 388, 309
+  offset: 0, 0
+  index: -1
+FarArm
+  rotate: false
+  xy: 2779, 865
+  size: 456, 465
+  orig: 456, 465
+  offset: 0, 0
+  index: -1
+FarHand
+  rotate: false
+  xy: 477, 27
+  size: 352, 281
+  orig: 352, 281
+  offset: 0, 0
+  index: -1
+FishingLine
+  rotate: false
+  xy: 1263, 2
+  size: 929, 2535
+  orig: 929, 2535
+  offset: 0, 0
+  index: -1
+FishingPole
+  rotate: false
+  xy: 2, 310
+  size: 1259, 2227
+  orig: 1259, 2227
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 2539
+  size: 2090, 1431
+  orig: 2090, 1431
+  offset: 0, 0
+  index: -1
+LeftFoot
+  rotate: false
+  xy: 2, 53
+  size: 473, 255
+  orig: 473, 255
+  offset: 0, 0
+  index: -1
+LeftKnee
+  rotate: false
+  xy: 3254, 2723
+  size: 295, 278
+  orig: 295, 278
+  offset: 0, 0
+  index: -1
+LeftLowerLeg
+  rotate: false
+  xy: 3254, 3003
+  size: 459, 967
+  orig: 459, 967
+  offset: 0, 0
+  index: -1
+LeftUpperLeg
+  rotate: true
+  xy: 2194, 28
+  size: 478, 701
+  orig: 478, 701
+  offset: 0, 0
+  index: -1
+LowerBody
+  rotate: false
+  xy: 2094, 2776
+  size: 1158, 1194
+  orig: 1158, 1194
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 3888, 3789
+  size: 179, 181
+  orig: 179, 181
+  offset: 0, 0
+  index: -1
+Ripples
+  rotate: true
+  xy: 3715, 3417
+  size: 553, 171
+  orig: 553, 171
+  offset: 0, 0
+  index: -1
+whiteout
+  rotate: false
+  xy: 831, 8
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1

@@ -21,6 +21,7 @@ public class EndGameObject : MonoBehaviour
     float endSpeed = .3f;
     private void Update()
     {
+        GameController.curGametime = GameController.G.fixedTimePoint;
         if (isEnding)
         {
             timeSinceEnd += Time.deltaTime;

@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text TimeLeft;
     public UnityEngine.UI.Text WhiteTimeLeft;
     public float percThroughTime;
+    public static float curGametime = 0f;
 
     public float timeSinceRewind = 0f;
     float minTimeBetweenRewinds = .25f;

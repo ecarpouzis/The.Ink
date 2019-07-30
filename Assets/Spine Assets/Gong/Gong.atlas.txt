@@ -1,0 +1,62 @@
+
+Gong.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+GongCircle
+  rotate: false
+  xy: 2, 1160
+  size: 1351, 1351
+  orig: 1351, 1351
+  offset: 0, 0
+  index: -1
+GongCircle2
+  rotate: false
+  xy: 2, 2
+  size: 1156, 1156
+  orig: 1156, 1156
+  offset: 0, 0
+  index: -1
+GongCircle3
+  rotate: false
+  xy: 2, 2513
+  size: 1537, 1537
+  orig: 1537, 1537
+  offset: 0, 0
+  index: -1
+GongEye
+  rotate: false
+  xy: 1160, 1032
+  size: 126, 126
+  orig: 126, 126
+  offset: 0, 0
+  index: -1
+GongPattern
+  rotate: false
+  xy: 2834, 2985
+  size: 1065, 1065
+  orig: 1065, 1065
+  offset: 0, 0
+  index: -1
+GongPupil
+  rotate: false
+  xy: 2834, 2939
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+GongRope
+  rotate: false
+  xy: 1541, 2144
+  size: 1217, 615
+  orig: 1217, 615
+  offset: 0, 0
+  index: -1
+Layer 10
+  rotate: false
+  xy: 1541, 2761
+  size: 1291, 1289
+  orig: 1291, 1289
+  offset: 0, 0
+  index: -1

@@ -17,12 +17,13 @@ public class IntroScript : MonoBehaviour
     public GameObject queenBubble1;
     public GameObject queenBubble2;
     public MeshRenderer queen;
-
+    public SoundSubClip introMusic;
+    public SoundSubClip dripSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        introMusic.Play();
     }
 
     // Update is called once per frame
@@ -56,7 +57,9 @@ public class IntroScript : MonoBehaviour
             queenBubble1.SetActive(true);
             queenBubble2.SetActive(true);
             queen.enabled = true;
+            dripSound.Play();
             Destroy(drip.gameObject);
+            Destroy(introMusic.gameObject);
             Destroy(this.gameObject);
         }
     }
