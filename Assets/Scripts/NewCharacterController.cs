@@ -22,6 +22,7 @@ public class NewCharacterController : SkeletonAnimator
     public GameObject DeathObject;
     public GameObject DeathCanvas;
     public GameObject PauseCanvas;
+    bool canDie = true;
 
     new void Awake()
     {
@@ -53,13 +54,13 @@ public class NewCharacterController : SkeletonAnimator
             else if (!isDead && !GameController.G.isRewinding)
             {
                 // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-                float moveInput = Input.GetAxis("Horizontal");
+                float moveInput = Input.GetAxisRaw("Horizontal");
 
-                if (moveInput > 0.05f)
+                if (moveInput > 0.01f)
                 {
                     _currentHorizInput = HorizInputs.Right;
                 }
-                else if(moveInput < -0.05f)
+                else if(moveInput < -0.01f)
                 {
                     _currentHorizInput = HorizInputs.Left;
                 }
@@ -147,7 +148,7 @@ public class NewCharacterController : SkeletonAnimator
     private float AdjustHorizontalVelocity(float inputVelocity)
     {
         const float MaxVelocity = 15f;
-        const float Acceleration = MaxVelocity * 20;
+        const float Acceleration = MaxVelocity * 50f;
         const float AirAcceleration = 80f;
 
         float desiredVelocity;
@@ -165,6 +166,9 @@ public class NewCharacterController : SkeletonAnimator
             desiredVelocity = 0;
         }
         bool grounded = IsGrounded();
+        if(grounded && desiredVelocity == 0) {
+            return 0f;
+        }
         if (grounded)
         {
             return Mathf.MoveTowards(inputVelocity, desiredVelocity, Acceleration * Time.fixedDeltaTime);
@@ -297,7 +301,10 @@ public class NewCharacterController : SkeletonAnimator
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("KillsPlayer"))
             {
-                Die();
+                if (canDie)
+                {
+                    Die();
+                }
             }
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Bouncy"))
             {
@@ -305,6 +312,7 @@ public class NewCharacterController : SkeletonAnimator
                 Bounce(bounceVelocity);
             } else if(hit.gameObject.layer == LayerMask.NameToLayer("Ending"))
             {
+                canDie = false;
                 hit.GetComponent<EndGameObject>().DoEnding();
             }
         }

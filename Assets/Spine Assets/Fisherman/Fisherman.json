@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "2syP9Q2OennMpBIfLSMXJp/7Ro0",
+	"hash": "M8dcDY9v2EkTV5W7OQc2gGMUqq8",
 	"spine": "3.8.52-beta",
-	"x": -1367.87,
-	"y": -210.05,
-	"width": 2750,
-	"height": 2666,
+	"x": -2480.08,
+	"y": -670.21,
+	"width": 3862.22,
+	"height": 3126.17,
 	"images": "Y:/Network Share/InkGame/Fisherman/images/",
 	"audio": "Y:/Network Share/InkGame/Fisherman"
 },
@@ -69,15 +69,15 @@
 	{ "name": "LeftLowerLeg2", "bone": "bone35", "attachment": "LeftLowerLeg" },
 	{ "name": "LeftKnee2", "bone": "bone34", "attachment": "LeftKnee" },
 	{ "name": "Ripples", "bone": "Ripples", "attachment": "Ripples" },
-	{ "name": "FarArm", "bone": "FarArm", "attachment": "FarArm" },
 	{ "name": "FishingPole", "bone": "FishingPole", "attachment": "FishingPole" },
 	{ "name": "LowerBody", "bone": "bone7", "attachment": "LowerBody" },
+	{ "name": "FarArm", "bone": "FarArm", "attachment": "FarArm" },
+	{ "name": "FarHand", "bone": "FarHand", "attachment": "FarHand" },
 	{ "name": "LeftUpperLeg", "bone": "LeftLeg", "attachment": "LeftUpperLeg" },
 	{ "name": "LeftFoot", "bone": "bone33", "attachment": "LeftFoot" },
 	{ "name": "LeftLowerLeg", "bone": "bone32", "attachment": "LeftLowerLeg" },
 	{ "name": "LeftKnee", "bone": "bone31", "attachment": "LeftKnee" },
 	{ "name": "Body", "bone": "BodyBase", "attachment": "Body" },
-	{ "name": "FarHand", "bone": "FarHand", "attachment": "FarHand" },
 	{ "name": "CloseArm", "bone": "CloseArm", "attachment": "CloseArm" },
 	{ "name": "CloseHand", "bone": "bone6", "attachment": "CloseHand" },
 	{ "name": "Neck", "bone": "Neck", "attachment": "Neck" },
@@ -581,8 +581,8 @@
 		"drawOrder": [
 			{
 				"offsets": [
-					{ "slot": "FishingPole", "offset": -5 },
-					{ "slot": "FarHand", "offset": -11 }
+					{ "slot": "FishingPole", "offset": -4 },
+					{ "slot": "FarHand", "offset": -6 }
 				]
 			}
 		]
@@ -995,8 +995,8 @@
 			{
 				"time": 0.3333,
 				"offsets": [
-					{ "slot": "FishingPole", "offset": -4 },
-					{ "slot": "FarHand", "offset": -10 }
+					{ "slot": "FishingPole", "offset": -3 },
+					{ "slot": "FarHand", "offset": -5 }
 				]
 			}
 		]
