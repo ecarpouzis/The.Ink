@@ -1,4 +1,4 @@
-# TheInk Retrospective
+# The Ink Retrospective
 
 I designed, drew, animated and developed The Ink as my entry into the 2019 Awful Summer Jam. It was a four-week gamejam with the theme of '60 seconds'. 
 
