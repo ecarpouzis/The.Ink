@@ -56,11 +56,11 @@ public class NewCharacterController : SkeletonAnimator
                 // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
                 float moveInput = Input.GetAxisRaw("Horizontal");
 
-                if (moveInput > 0.01f)
+                if (moveInput > 0.3f)
                 {
                     _currentHorizInput = HorizInputs.Right;
                 }
-                else if(moveInput < -0.01f)
+                else if(moveInput < -0.3f)
                 {
                     _currentHorizInput = HorizInputs.Left;
                 }
@@ -238,7 +238,7 @@ public class NewCharacterController : SkeletonAnimator
     }
 
     public LayerMask groundMaskCheck;
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         var boxCenter = (Vector2)_boxCollider.bounds.center;
         var boxSize = (Vector2)_boxCollider.bounds.size;
@@ -248,7 +248,8 @@ public class NewCharacterController : SkeletonAnimator
 
         Vector2 size = new Vector2(boxSize.x / 2f, pad);
 
-        return Physics2D.OverlapBox(origin, size, 0f, groundMaskCheck);
+        bool grounded =  Physics2D.OverlapBox(origin, size, 0f, groundMaskCheck);
+        return grounded;
     }
 
 

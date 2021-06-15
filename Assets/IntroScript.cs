@@ -29,7 +29,8 @@ public class IntroScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump")){
+        if(Input.GetButtonDown("Jump") && !gameStarted)
+        {
             gameStarted = true;
             var skel = drip.GetComponent<SkeletonAnimation>();
             var fall = skel.AnimationState.SetAnimation(0, "DripFall", true);

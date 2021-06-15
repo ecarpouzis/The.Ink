@@ -66,7 +66,14 @@ public class TimeController : MonoBehaviour
                 lastIndex = keyframes.Count - 1;
             }
             currentPosition = (keyframes[lastIndex] as PositionKeyframe).position;
-            currentVelocity = (keyframes[lastIndex] as PositionKeyframe).velocity;
+            if (player.IsGrounded())
+            {
+                currentVelocity = Vector2.zero;
+            }
+            else
+            {
+                currentVelocity = (keyframes[lastIndex] as PositionKeyframe).velocity;
+            }
             currentScale = (keyframes[lastIndex] as PositionKeyframe).localScale;
             currentAnimation = (keyframes[lastIndex] as PositionKeyframe).animation;
            keyframes.RemoveAt(lastIndex);

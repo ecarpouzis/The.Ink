@@ -12,7 +12,7 @@ public class EndScript : MonoBehaviour
     public float timeEnding;
     public SkeletonAnimation fisherman;
     bool isScrolling = true;
-    float scrollSpeed = .75f;
+    float scrollSpeed = .6f;
     float fishermanSpeed = 4f;
     float timewalking = 0f;
     public SoundSubClip music;
